@@ -9,5 +9,5 @@ package entity;
  * @author Kuro
  */
 public class NewClass {
-//    blablbabla
+//    skdjfklsdjf
 }
