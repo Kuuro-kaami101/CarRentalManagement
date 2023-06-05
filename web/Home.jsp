@@ -56,7 +56,7 @@
                                 <img class="card-img-top" src="images/${o.image}" alt="Img" height="240">
                                 <div class="card-body">
                                     <input type ="hidden" name ="carID" value="${o.carId}">
-                                    <h4 class="card-title show_txt"><a href="detail?carID=${o.carId}" title="View car">${o.name}</a></h4>
+                                    <h4 class="card-title show_txt"><a href="DetailCar?carID=${o.carId}" title="View car">${o.name}</a></h4>
                                     <p class="card-text show_txt">${o.name}</p>
                                     <div class="row">
                                         <div class="col">

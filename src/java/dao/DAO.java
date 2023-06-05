@@ -14,8 +14,10 @@ import java.util.logging.Logger;
 import entity.Car;
 import entity.Category;
 import entity.Customer;
+import entity.Location;
 import entity.Manager;
 import entity.Staff;
+import entity.Rental;
 import java.sql.Statement;
 
 public class DAO implements DBContext {
@@ -36,7 +38,7 @@ public class DAO implements DBContext {
         return null;
     }
 
-    public static List<Car> getAllCar() {
+    public  List<Car> getAllCar() {
         List<Car> list = new ArrayList<>();
         String query = "select * from Cars order by car_id";
         try (Connection con = getConnect()) {
@@ -58,6 +60,31 @@ public class DAO implements DBContext {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+    }
+    public Car getCar(int id) {
+        String query = "select * from Hotel where hotelID = ?";
+        try(Connection conn=getConnect()) {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Car(
+                        rs.getInt(1),
+                    rs.getString(2),
+                    rs.getInt(3),
+                    rs.getString(4),
+                    rs.getString(5),
+                    rs.getInt(6),
+                    rs.getString(7),
+                    rs.getInt(8),
+                    rs.getString(9)
+                );
+            }
+            return null;
+        } catch (Exception e) {
+            System.out.println("Error in display hotel by address: " + e.getMessage());
+            return null;
+        }
     }
     
     public static List<Admin> getAllAdmin() {
@@ -224,6 +251,23 @@ public class DAO implements DBContext {
     }
     return null;
     }
+    public Location getLocationbyid(String lid){
+        String query="select * from Locations\n"
+            + "where location_id = ?";
+        try (Connection con=getConnect()) {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, lid);
+            ResultSet rs=ps.executeQuery();
+            while (rs.next()) {
+                return new Location(rs.getInt(1),
+                    rs.getString(2),
+                    rs.getString(3));
+            }  
+        }catch (Exception ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        return null;
+    }
      
     public void addCustomer(Customer customer) {
         Connection connection = null;
@@ -309,6 +353,8 @@ public class DAO implements DBContext {
             }
         }
     }
+    
+    
     
     public static void main(String[] args) {
         

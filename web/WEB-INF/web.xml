@@ -27,6 +27,18 @@
         <servlet-name>DetailControl</servlet-name>
         <servlet-class>control.DetailControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BookCar</servlet-name>
+        <servlet-class>control.BookCar</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetailCar</servlet-name>
+        <servlet-class>control.DetailCar</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>control.HomeServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ManageCustomer</servlet-name>
         <url-pattern>/ManageCustomer</url-pattern>
@@ -50,6 +62,18 @@
     <servlet-mapping>
         <servlet-name>DetailControl</servlet-name>
         <url-pattern>/detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookCar</servlet-name>
+        <url-pattern>/BookCar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailCar</servlet-name>
+        <url-pattern>/DetailCar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
