@@ -93,22 +93,22 @@ public class DAO implements DBContext {
         }
         return null;
     }
-    public void editCar(String image,String cost ,String status,String detail ,
-            String carId){
+    public void editCar(String image,int cost ,String status,String detail ,String carId){
         String query = "UPDATE [dbo].[Cars]\n" +
 "   SET [image] =?\n" +
 "      ,[price_per_day] = ?\n" +
 "      ,[status] =?\n" +
-"       ,[detail] =?<\n" +
+"       ,[detail] =?\n" +
 " WHERE [car_id] =1";       
-            try (Connection con = getConnect()){
+        try (Connection con = getConnect()){
             PreparedStatement ps=null;
             ps = con.prepareStatement(query);
             ps.setString(1, image );      
-            ps.setString(2, cost);
+            ps.setInt(2, cost);
             ps.setString(3, status);
             ps.setString(4, detail);
             ps.setString(5, carId);
+            ps.executeUpdate(); 
         } catch (Exception e) {
         }
     }

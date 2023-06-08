@@ -33,7 +33,7 @@ public class EditCarControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String id =request.getParameter("carId");
         String image =request.getParameter("image");
-        String price =request.getParameter("price");
+        int price =Integer.parseInt(request.getParameter("price"));
         String status =request.getParameter("status");
         String detail =request.getParameter("detail");
         DAO dao=new DAO();

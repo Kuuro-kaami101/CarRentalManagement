@@ -39,14 +39,14 @@
                         <form action="edit" method="post">
                             <div class="modal-header">						
                                 <h4 class="modal-title">Edit Car</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <a href="#" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
                             </div>
                             <div class="modal-body">					
                                 <div class="form-group">
                                     <label>ID</label>
                                     <input value="${listCar.carId}" name="carId" type="text" class="form-control" readonly required>
                                 </div>
-                                <div class="form-group">
+<!--                                <div class="form-group">
                                     <label>Name</label>
                                     <input value="${listCar.name}" name="name" type="text" class="form-control" readonly required>
                                 </div>
@@ -65,7 +65,7 @@
                                 <div class="form-group">
                                     <label>Registration Number</label>
                                     <input value="${listCar.registrationNumber}" name="regisnum" type="text" class="form-control"readonly required>
-                                </div>
+                                </div>-->
                                 <div class="form-group">
                                     <label>Image</label>
                                     <input value="${listCar.image}" name="image" type="text" class="form-control" required>
@@ -82,8 +82,6 @@
                                     <label>Detail</label>
                                     <textarea name="detail" class="form-control" required>${listCar.detail}</textarea>
                                 </div>
-                                
-
                             </div>
                             <div class="modal-footer">
                                 <input type="submit" class="btn btn-success" value="Edit">
