@@ -3,6 +3,7 @@ package control;
 import dao.DAO;
 import entity.Car;
 import entity.Category;
+import entity.Location;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,6 +21,8 @@ public class ManageCarControl extends HttpServlet {
         request.setAttribute("listCar", listCar);
         List<Category> listCategory = dao.getAllCategory();
         request.setAttribute("listCategory", listCategory);
+        List<Location> listlocation = dao.getAllLocation();
+        request.setAttribute("listlocation", listlocation);
         request.getRequestDispatcher("ManageCar.jsp").forward(request, response);
     }
 

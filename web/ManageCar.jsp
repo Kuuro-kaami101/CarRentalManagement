@@ -127,76 +127,11 @@
                 <h2>Manage <b>Product</b></h2>
             </div>
             <div class="col-sm-6">
-                <a href="#addEmployeeModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>						
+                <a href="#addEmployeeModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
             </div>
         </div>
     </div>
-        
-        <div class="elfsight-app-7a8a80c7-7647-43a3-b316-bb1e912d504d">
-        </div>
-        
-    <!-- Edit Modal HTML -->
-        <div id="addEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="add" method="post">
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Add Product</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">					
-                            <div class="form-group">
-                                    <label>ID</label>
-                                    <input  name="carId" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input  name="name" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Category</label>
-                                    <select name="category" class="form-select" aria-label="Default select example">
-                                        <c:forEach items="${listCategory}" var="o">
-                                            <option value="${o.cid}">${o.cname}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <input  name="address" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Registration Number</label>
-                                    <input name="regisnum" type="text" class="form-control"required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Image</label>
-                                    <input name="image" type="file" class="form-control" required>
-                                    
-                                </div>
-                                <div class="form-group">
-                                    <label>Price</label>
-                                    <input name="price" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Status</label>
-                                    <textarea name="status" class="form-control" required></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Detail</label>
-                                    <textarea name="detail" class="form-control" required></textarea>
-                                </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-success" value="Add">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-<!--abc    -->
+    
         <table class="table table-striped table-hover">
             <tr>
                 <th>ID</th>
@@ -230,10 +165,69 @@
             </c:forEach>
                 
         </table>
-        <!--asd-->
-        
-        
-        <!--asd-->
+<!-- Edit Modal HTML -->
+        <div id="addEmployeeModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="add" method="post">
+                        <div class="modal-header">						
+                            <h4 class="modal-title">Add New Car</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">					
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input  name="name" type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    <select name="category" class="form-select" aria-label="Default select example">
+                                        <c:forEach items="${listCategory}" var="o">
+                                            <option value="${o.cid}">${o.cname}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Detail</label>
+                                    <textarea name="detail" class="form-control" required></textarea>
+                                </div> 
+                                <div class="form-group">
+                                    <label>Registration Number</label>
+                                    <input name="regisnum" type="text" class="form-control"required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <select name="address" class="form-select" aria-label="Default select example">
+                                        <c:forEach items="${listlocation}" var="l">
+                                            <option value="${l.locationId}">${l.address}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Image</label>
+                                    <input name="image" type="text" class="form-control" required>                                   
+                                </div>
+                                <div class="form-group">
+                                    <label>Price</label>
+                                    <input name="price" type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <textarea name="status" class="form-control" required></textarea>
+                                </div>
+                                
+
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-success" value="Add">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+<!--End edit   -->
         <script src="js/manager.js" type="text/javascript"></script>
     </body>
 </html>

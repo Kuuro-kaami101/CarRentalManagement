@@ -31,13 +31,15 @@ public class EditCarControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String id =request.getParameter("carId");
+        String id_raw =request.getParameter("carId");
+        int id=Integer.parseInt(id_raw);
         String image =request.getParameter("image");
         int price =Integer.parseInt(request.getParameter("price"));
         String status =request.getParameter("status");
         String detail =request.getParameter("detail");
         DAO dao=new DAO();
-        dao.editCar(image,price, status,detail, id);
+        
+        dao.editCar(image,price, status,detail, id_raw);
         response.sendRedirect("ManageCarControl");
         
     }

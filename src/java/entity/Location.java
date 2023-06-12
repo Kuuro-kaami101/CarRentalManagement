@@ -2,12 +2,11 @@ package entity;
 
 public class Location {
     private int locationId;
-    private String name;
     private String address;
+    public Location(){}
 
-    public Location(int locationId, String name, String address) {
+    public Location(int locationId, String address) {
         this.locationId = locationId;
-        this.name = name;
         this.address = address;
     }
 
@@ -21,14 +20,6 @@ public class Location {
         this.locationId = locationId;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -37,15 +28,13 @@ public class Location {
         this.address = address;
     }
 
-    // toString method
-
     @Override
     public String toString() {
-        return "Location{" +
-                "locationId=" + locationId +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+        return "Location{" + "locationId=" + locationId + ", address=" + address + '}';
     }
+    
+    
+
+
 }
 

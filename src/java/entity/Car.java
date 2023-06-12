@@ -10,6 +10,8 @@ public class Car {
     private String image;
     private int cost;
     private String status;
+    
+    public Car(){};
 
     public Car(int carId, String name, String category_title, String detail, String registrationNumber, String address, String image, int cost, String status) {
         this.carId = carId;
@@ -18,6 +20,13 @@ public class Car {
         this.detail = detail;
         this.registrationNumber = registrationNumber;
         this.address = address;
+        this.image = image;
+        this.cost = cost;
+        this.status = status;
+    }
+    public Car(int CarId, String image, int cost, String status,String detail){
+        this.carId = carId;
+        this.detail = detail;
         this.image = image;
         this.cost = cost;
         this.status = status;

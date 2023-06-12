@@ -8,6 +8,9 @@ public class Customer {
     private String driverLicenseNumber;
     private String username;
     private String password;
+    
+    public Customer(){};
+            
 
     public Customer(int customerId, String fullName, String email, String phone, String driverLicenseNumber, String username, String password) {
         this.customerId = customerId;
@@ -18,6 +21,7 @@ public class Customer {
         this.username = username;
         this.password = password;
     }
+
 
     public int getCustomerId() {
         return customerId;

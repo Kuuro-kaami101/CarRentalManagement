@@ -12,6 +12,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
 
 /**
  *
@@ -31,17 +35,20 @@ public class AddCarServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String name =request.getParameter("name");
         String category =request.getParameter("category");
-        String address =request.getParameter("address");
+        String detail =request.getParameter("detail");
         String regisnum =request.getParameter("regisnum");
+        String location =request.getParameter("address");
         String image =request.getParameter("image");
         String price =request.getParameter("price");
         String status =request.getParameter("status");
-        String detail =request.getParameter("detail");
-        //String name =request.getParameter("name");
-        HttpSession session =request.getSession();
-        Customer cus =(Customer) session.getAttribute("acc");
+               
+        DAO dao =new DAO();
+        dao.addCar(name, category, detail, regisnum, location, image, price, status);
+        response.sendRedirect("ManageCarControl");
+        
         
     }
 

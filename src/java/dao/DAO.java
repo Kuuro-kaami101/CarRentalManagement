@@ -15,6 +15,7 @@ import entity.Category;
 import entity.Customer;
 import entity.Staff;
 import java.sql.Statement;
+import entity.*;
 
 public class DAO implements DBContext {
     
@@ -33,6 +34,7 @@ public class DAO implements DBContext {
         }
         return null;
     }
+    
 
     public static List<Car> getAllCar() {
         List<Car> list = new ArrayList<>();
@@ -59,6 +61,26 @@ public class DAO implements DBContext {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+    }
+    public void addCar(String name, String category, String detail, String regisnumString,String location,
+                       String image, String price,String status){
+        String sql="INSERT [dbo].[Cars]\n" +
+                    "([name],[category_id],[detail],[registration_number],[location_id],[image],[price_per_day],[status])\n" +
+                    "VALUES(?,?,?,?,?,?,?,?)";
+        try(Connection con =getConnect()){
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, category);
+            ps.setString(3, detail);
+            ps.setString(4, regisnumString);
+            ps.setString(5, location);
+            ps.setString(6, image);
+            ps.setString(7, price);
+            ps.setString(8, status);
+            ps.executeUpdate();
+        }catch (SQLException ex) {
+            
+        }
     }
     public void deleteCarbyID(int id){
         String sql="DELETE FROM [dbo].[Cars]\n" + "WHERE car_id=?";
@@ -99,7 +121,7 @@ public class DAO implements DBContext {
 "      ,[price_per_day] = ?\n" +
 "      ,[status] =?\n" +
 "       ,[detail] =?\n" +
-" WHERE [car_id] =1";       
+" WHERE [car_id] =?";       
         try (Connection con = getConnect()){
             PreparedStatement ps=null;
             ps = con.prepareStatement(query);
@@ -109,7 +131,7 @@ public class DAO implements DBContext {
             ps.setString(4, detail);
             ps.setString(5, carId);
             ps.executeUpdate(); 
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
     }
     public List<Car> getCarBylocation(String txtSearch) {
@@ -138,6 +160,21 @@ public class DAO implements DBContext {
         Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
     }
     return list;
+    }
+    public List<Location> getAllLocation() {
+        List<Location> list = new ArrayList<>();
+        String query = "select * from Locations";
+        try (Connection con=getConnect()) {
+            PreparedStatement stmt=con.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                list.add(new Location(rs.getInt(1),
+                        rs.getString(2)));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
     
     public static List<Customer> getAllCustomer() {

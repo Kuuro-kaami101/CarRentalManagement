@@ -3,6 +3,7 @@ package control;
 import dao.DAO;
 import entity.Car;
 import entity.Category;
+import entity.Location;
 import java.io.IOException;
 import java.util.List;
 import jakarta.servlet.ServletException;
@@ -22,6 +23,8 @@ public class HomeControl extends HttpServlet {
         List<Category> listCategory = dao.getAllCategory();
         request.setAttribute("listCar", listCar);
         request.setAttribute("listCategory", listCategory);
+        List<Location> listlocation = dao.getAllLocation();
+        request.setAttribute("listlocation", listlocation);
         request.getRequestDispatcher("Home.jsp").forward(request, response);
     }
 

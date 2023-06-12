@@ -4,11 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/SUMMER23-KI%205/SWP391/CarRentalManagement-master/CarRentalManagement-master/src/java/ManagerControl/AddCarServlet.java</file>
-            <file>file:/D:/SUMMER23-KI%205/SWP391/CarRentalManagement-master/CarRentalManagement-master/web/ManageCar.jsp</file>
             <file>file:/D:/SUMMER23-KI%205/SWP391/CarRentalManagement-master/CarRentalManagement-master/src/java/dao/DAO.java</file>
-            <file>file:/D:/SUMMER23-KI%205/SWP391/CarRentalManagement-master/CarRentalManagement-master/src/java/ManagerControl/EditCarControl.java</file>
-            <file>file:/D:/SUMMER23-KI%205/SWP391/CarRentalManagement-master/CarRentalManagement-master/src/java/control/ManageCarControl.java</file>
-            <file>file:/D:/SUMMER23-KI%205/SWP391/CarRentalManagement-master/CarRentalManagement-master/src/java/ManagerControl/LoadCar.java</file>
+            <file>file:/D:/SUMMER23-KI%205/SWP391/CarRentalManagement-master/CarRentalManagement-master/src/java/entity/Car.java</file>
             <file>file:/D:/SUMMER23-KI%205/SWP391/CarRentalManagement-master/CarRentalManagement-master/src/java/entity/Location.java</file>
         </group>
     </open-files>
