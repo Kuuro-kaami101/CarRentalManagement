@@ -13,8 +13,9 @@ public class ManageCustomerControl extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        DAO dao = new DAO();
         response.setContentType("text/html;charset=UTF-8");
-        List<Customer> listCustomer = DAO.getAllCustomer();
+        List<Customer> listCustomer = dao.getAllCustomer();
         request.setAttribute("listC", listCustomer);
         request.getRequestDispatcher("ManageCustomer.jsp").forward(request, response);
         }

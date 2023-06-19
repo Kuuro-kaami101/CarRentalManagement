@@ -27,7 +27,7 @@
                         <li class="">
                             <form action="search" method="post" class="form-inline my-2 my-lg-0">
                                 <div class="input-group input-group-sm">
-                                    <select name="location" class="form-control">
+                                    <select name="locationId" class="form-control">
                                         <option value="1">Quận Thanh Xuân, Hà Nội</option>
                                         <option value="2">Quận 1, Hồ Chí Minh</option>
                                         <option value="3">Quận Ngũ Hành Sơn, Đà Nẵng</option>

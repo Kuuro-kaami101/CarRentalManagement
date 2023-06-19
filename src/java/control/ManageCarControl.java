@@ -15,9 +15,9 @@ public class ManageCarControl extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        List<Car> listCar = DAO.getAllCar();
         DAO dao= new DAO();
+        response.setContentType("text/html;charset=UTF-8");
+        List<Car> listCar = dao.getAllCar();
         request.setAttribute("listCar", listCar);
         List<Category> listCategory = dao.getAllCategory();
         request.setAttribute("listCategory", listCategory);

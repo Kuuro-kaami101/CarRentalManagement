@@ -207,14 +207,13 @@ VALUES
 --=========================================================================================================================
 ALTER TABLE Cars
 ADD [car_id] [int] IDENTITY(16,1) NOT NULL
-
-
+	
 	SELECT Cars.name AS car_name, Categories.title AS category_title, Locations.address, Cars.detail, Cars.registration_number, Cars.image, Cars.price_per_day, Cars.status
 	FROM Cars 
 	JOIN Categories ON Cars.category_id = Categories.category_id 
 	INNER JOIN Locations ON Cars.location_id = Locations.location_id
-	WHERE address like '%Đà%'
-//-----
+	WHERE cars.location_id = 1
+
 use Carproject
 
 SELECT Rentals.rental_id, Customers.full_name AS customer_name, Rentals.rental_start_date, Rentals.rental_end_date
@@ -258,10 +257,29 @@ JOIN Locations l ON c.location_id = l.location_id
 JOIN Categories ca ON c.category_id = ca.category_id
 LEFT JOIN RentalItems ri ON c.car_id = ri.car_id
 LEFT JOIN Rentals r ON ri.rental_id = r.rental_id
-WHERE c.car_id NOT IN (
-    SELECT car_id
-    FROM RentalItems ri
-    JOIN Rentals r ON ri.rental_id = r.rental_id
-    WHERE (r.rental_end_date < '2023-09-03' or r.rental_start_date > '2023-09-03')
+    WHERE NOT EXISTS (
+    SELECT 1
+    FROM Rentals r
+    INNER JOIN RentalItems ri ON r.rental_id = ri.rental_id
+    WHERE ri.car_id = c.car_id
+    AND (
+         r.rental_start_date <= 'start_date' AND r.rental_end_date >= 'start_date'
+        OR r.rental_start_date <= 'end_date' AND r.rental_end_date >= 'end_date'
+        OR r.rental_start_date >= 'start_date' AND r.rental_end_date <= 'end_date'
+    )
 )
 AND l.location_id = 1
+
+SELECT c.car_id, c.name
+FROM Cars c
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM Rentals r
+    INNER JOIN RentalItems ri ON r.rental_id = ri.rental_id
+    WHERE ri.car_id = c.car_id
+    AND (
+        r.rental_start_date <= '2023-09-03' AND r.rental_end_date >= '2023-09-03'
+        OR r.rental_start_date <= '2023-09-03' AND r.rental_end_date >= '2023-09-03'
+        OR r.rental_start_date >= '2023-09-03' AND r.rental_end_date <= '2023-09-03'
+    )
+);

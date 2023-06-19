@@ -14,7 +14,8 @@ public class ManageStaffControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        List<Staff> listStaff = DAO.getAllWorker();
+        DAO dao = new DAO();
+        List<Staff> listStaff = dao.getAllWorker();
         request.setAttribute("listS", listStaff);
         request.getRequestDispatcher("ManageStaff.jsp").forward(request, response);
         }

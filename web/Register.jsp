@@ -49,7 +49,7 @@
     <body>
         <div class="container">
             <h2>Đăng ký</h2>
-            <form action="register" method="post">
+            <form action="register" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="fullName">Họ và tên:</label>
                     <input type="text" id="fullName" name="fullName" required>
@@ -63,8 +63,12 @@
                     <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
                 </div>
                 <div class="form-group">
-                    <label for="driverLicenseNumber">Giấy phép lái xe:</label>
-                    <input type="text" id="driverLicenseNumber" name="driverLicenseNumber" required>
+                    <label for="driverLicenseNumber">Số giấy phép lái xe:</label>
+                    <input type="text" id="driverLicense" name="driverLicense" required>
+                </div>
+                <div class="form-group">
+                    <label for="frontPicture">Ảnh mặt trước:</label>
+                    <input type="file" id="frontPicture" name="frontPicture" accept="image/*" required>
                 </div>
                 <div class="form-group">
                     <label for="username">Tên đăng nhập:</label>

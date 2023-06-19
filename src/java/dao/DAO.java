@@ -18,13 +18,10 @@ import java.sql.Statement;
 import entity.*;
 import java.sql.CallableStatement;
 import java.sql.Types;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 public class DAO implements DBContext {
 
-    public static Connection getConnect() {
+    public  Connection getConnect() {
         try {
             Class.forName(DRIVERNAME);
         } catch (ClassNotFoundException e) {
@@ -39,7 +36,7 @@ public class DAO implements DBContext {
         return null;
     }
 
-    public static List<Car> getAllCar() {
+    public List<Car> getAllCar() {
         List<Car> list = new ArrayList<>();
         String query = "SELECT Cars.car_id, Cars.name AS car_name, Categories.title AS category_title, Cars.detail, Cars.registration_number, Locations.address, Cars.image, Cars.price_per_day, Cars.status\n"
                 + "FROM Cars\n"
@@ -66,31 +63,29 @@ public class DAO implements DBContext {
         return list;
     }
 
-    public static List<Car> getAllCarByLocationAndDate(int location, String startDate, String endDate) throws ParseException {
+    public List<Car> getAllCarByLocationAndDate(int locationId, String startDate, String endDate) {
         List<Car> list = new ArrayList<>();
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        java.util.Date date1 = format.parse(startDate);
-        java.util.Date date2 = format.parse(endDate);
-        java.sql.Date sqlDate1 = new java.sql.Date(date1.getTime());
-        java.sql.Date sqlDate2 = new java.sql.Date(date2.getTime());
         String query = "SELECT c.car_id, c.name, ca.title, c.detail, c.registration_number, l.address, c.image, c.price_per_day, c.status\n"
                 + "FROM cars c\n"
                 + "JOIN Locations l ON c.location_id = l.location_id\n"
                 + "JOIN Categories ca ON c.category_id = ca.category_id\n"
                 + "LEFT JOIN RentalItems ri ON c.car_id = ri.car_id\n"
                 + "LEFT JOIN Rentals r ON ri.rental_id = r.rental_id\n"
-                + "WHERE c.car_id NOT IN (\n"
-                + "    SELECT car_id\n"
-                + "    FROM RentalItems ri\n"
-                + "    JOIN Rentals r ON ri.rental_id = r.rental_id\n"
-                + "    WHERE (r.rental_end_date < ? or r.rental_start_date > ?)\n"
+                + "    WHERE NOT EXISTS (\n"
+                + "    SELECT 1\n"
+                + "    FROM Rentals r\n"
+                + "    INNER JOIN RentalItems ri ON r.rental_id = ri.rental_id\n"
+                + "    WHERE ri.car_id = c.car_id\n"
+                + "    AND (\n"
+                + "         r.rental_start_date <= '"+startDate+ "' AND r.rental_end_date >= '"+startDate+"'\n"
+                + "        OR r.rental_start_date <= '"+endDate+"' AND r.rental_end_date >= '"+endDate+"'\n"
+                + "        OR r.rental_start_date >= '"+startDate+"' AND r.rental_end_date <= '"+endDate+"'\n"
+                + "    )\n"
                 + ")\n"
                 + "AND l.location_id = ?";
         try ( Connection con = getConnect()) {
             PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setDate(1, sqlDate1);
-            stmt.setDate(2, sqlDate2);
-            stmt.setInt(3, location);
+            stmt.setInt(1, locationId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 list.add(new Car(rs.getInt(1),
@@ -141,32 +136,8 @@ public class DAO implements DBContext {
             System.out.println(e);
         }
     }
-//    public Car getCarByID(String id) {
-//        String query = "SELECT * FROM Cars \n" +
-//                   "WHERE car_id = ?";
-//        try (Connection con=getConnect()) {
-//            PreparedStatement ps = con.prepareStatement(query);
-//            ps.setString(1, id);
-//            ResultSet rs=ps.executeQuery();
-//            if (rs.next()) {
-//                return new Car(rs.getInt(1),
-//                    rs.getString(2),
-//                    rs.getString(3),
-//                    rs.getString(4),
-//                    rs.getString(5),
-//                    rs.getString(6),
-//                    rs.getString(7),
-//                    rs.getInt(8),
-//                    rs.getString(9));
-//        }
-//        } catch (Exception ex) {
-//        
-//        }
-//        return null;
-//    }
 
-    //-----------------------
-    public static Car getCarByID(String id) {
+    public  Car getCarByID(String id) {
         Car c = new Car();
         String query = "SELECT Cars.car_id, Cars.name AS car_name, Categories.title AS category_title, Locations.address, Cars.detail, Cars.registration_number, Cars.image, Cars.price_per_day, Cars.status\n"
                 + "FROM Cars \n"
@@ -194,7 +165,7 @@ public class DAO implements DBContext {
         return c;
     }
 
-    public static Car getCarByID2(int cid) {
+    public  Car getCarByID2(int cid) {
         Car c = new Car();
         String query = "SELECT Cars.car_id, Cars.name AS car_name, Categories.title AS category_title, Locations.address, Cars.detail, Cars.registration_number, Cars.image, Cars.price_per_day, Cars.status\n"
                 + "FROM Cars \n"
@@ -308,7 +279,7 @@ public class DAO implements DBContext {
         return l;
     }
 
-    public static List<Customer> getAllCustomer() {
+    public  List<Customer> getAllCustomer() {
         List<Customer> customerList = new ArrayList<>();
         try ( Connection connection = DriverManager.getConnection(DBURL, USERDB, PASSDB);  Statement statement = connection.createStatement()) {
             String query = "SELECT * FROM Customers";
@@ -342,7 +313,7 @@ public class DAO implements DBContext {
         }
     }
 
-    public static List<Staff> getAllStaff() {
+    public  List<Staff> getAllStaff() {
         List<Staff> list = new ArrayList<>();
         try ( Connection connection = DriverManager.getConnection(DBURL, USERDB, PASSDB);  Statement statement = connection.createStatement()) {
             String query = "SELECT * FROM Staffs";
@@ -364,7 +335,7 @@ public class DAO implements DBContext {
         return list;
     }
 
-    public static List<Staff> getAllWorker() {
+    public  List<Staff> getAllWorker() {
         List<Staff> list = new ArrayList<>();
         try ( Connection connection = DriverManager.getConnection(DBURL, USERDB, PASSDB);  Statement statement = connection.createStatement()) {
             String query = "SELECT * FROM Staffs where role_id = 3";
@@ -401,7 +372,7 @@ public class DAO implements DBContext {
         return list;
     }
 
-    public static List<Car> getCarByCategoryID(String cid) {
+    public  List<Car> getCarByCategoryID(String cid) {
         List<Car> list = new ArrayList<>();
         String query = "SELECT Cars.car_id, Cars.name AS car_name, Categories.title AS category_title, Locations.address, Cars.detail, Cars.registration_number, Cars.image, Cars.price_per_day, Cars.status\n"
                 + "FROM Cars \n"
@@ -519,7 +490,7 @@ public class DAO implements DBContext {
         }
     }
 
-    public static List<Rental> getAllRental() {
+    public  List<Rental> getAllRental() {
         List<Rental> list = new ArrayList<>();
         String query = "select * from Rentals";
         try ( Connection con = getConnect()) {
@@ -609,7 +580,7 @@ public class DAO implements DBContext {
         }
     }
 
-    public static int calculateTotalCost(int carId, java.sql.Date startDate, java.sql.Date endDate) {
+    public  int calculateTotalCost(int carId, java.sql.Date startDate, java.sql.Date endDate) {
         int totalCost = 0;
         Connection connection = null;
         try {
@@ -683,7 +654,7 @@ public class DAO implements DBContext {
         return list;
     }
 
-    public static void updateRentalStatus(int rentalId) {
+    public  void updateRentalStatus(int rentalId) {
         String query = "UPDATE Rentals SET rental_status = N'Unpay' WHERE rental_id = ?";
         try ( Connection con = getConnect()) {
             PreparedStatement stmt = con.prepareStatement(query);
@@ -694,7 +665,7 @@ public class DAO implements DBContext {
         }
     }
 
-    public static void main(String[] args) {
+    public  void main(String[] args) {
 
     }
 }
