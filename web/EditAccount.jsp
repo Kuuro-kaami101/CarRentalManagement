@@ -1,9 +1,3 @@
-<%-- 
-    Document   : ManagerProduct
-    Created on : Dec 28, 2020, 5:19:02 PM
-    Author     : trinh
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,7 +6,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+        <!-- <title>Bootstrap CRUD Data Table for Database with Modal Form</title> -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -32,7 +26,7 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Edit <b>Category</b></h2>
+                            <h2>Edit <b>Account</b></h2>
                         </div>
                         <div class="col-sm-6">
                         </div>
@@ -42,23 +36,31 @@
             <div id="editEmployeeModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="editC" method="post" enctype="multipart/form-data">
+                        <form action="editA" method="post" enctype="multipart/form-data">
                             <div class="modal-header">						
-                                <h4 class="modal-title">Edit Category</h4>
+                                <h4 class="modal-title">Edit Account</h4>
                             </div>
                             <div class="modal-body">					
                                 <div class="form-group">
                                     <label>ID</label>
-                                    <input value="${detail.cid}" name="id" type="text" class="form-control" readonly required>
+                                    <input value="${detail.id}" name="id" type="text" class="form-control" readonly required>
                                 </div>
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input value="${detail.cname}" name="name" type="text" class="form-control" required>
+                                    <input value="${detail.name}" name="name" type="text" class="form-control" required>
+                                </div>
+                                 <div class="form-group">
+                                    <label>User Name</label>
+                                    <input value="${detail.user}" name="user" type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input value="${detail.pass}" name="pass" type="text" class="form-control" required>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <input type="submit" class="btn btn-success" value="Edit">
-                                <a href="managerC" class="btn btn-success" style = "background-color: white; color: black">Back to Category List</a>	
+                                <a href="home" class="btn btn-success" style = "background-color: white; color: black">Back to Home</a>	
                             </div>
                         </form>
                     </div>

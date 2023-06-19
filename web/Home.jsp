@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,19 +18,24 @@
             <div class="col">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="home">Home</a>
-                        </li>
                         <c:if test="${sessionScope.acc == 4}"> 
                             <li class="breadcrumb-item">
-                                <a href="display">Giỏ hàng</a>
+                                <a href="CartControl?cusId=${cus.customerId}">Đơn thuê xe</a>
                             </li> 
                         </c:if>     
                         <li class="breadcrumb-item" style="flex-grow: 1;"></li>
                         <li class="">
                             <form action="search" method="post" class="form-inline my-2 my-lg-0">
                                 <div class="input-group input-group-sm">
-                                    <input oninput="searchByName(this)" value="${txtS}" name="txt" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Địa điểm">
+                                    <select name="location" class="form-control">
+                                        <option value="1">Quận Thanh Xuân, Hà Nội</option>
+                                        <option value="2">Quận 1, Hồ Chí Minh</option>
+                                        <option value="3">Quận Ngũ Hành Sơn, Đà Nẵng</option>
+                                        <option value="4">Quận Sơn Trà, Đà Nẵng</option>
+                                        <option value="5">Quận Thanh Khê, Đà nẵng</option>
+                                    </select>
+                                    <input name="startDate" type="date" class="form-control" placeholder="Start Date">
+                                    <input name="endDate" type="date" class="form-control" placeholder="End Date">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-secondary btn-number">
                                             <i class="fa fa-search"></i>
@@ -54,7 +59,7 @@
                             <div class="card">
                                 <img class="card-img-top" src="images/${o.image}" alt="Img" height="240">
                                 <div class="card-body">
-                                    <input type ="hidden" name ="carID" value="${o.carId}">
+                                    <input type="hidden" name="carID" value="${o.carId}">
                                     <h4 class="card-title show_txt"><a href="detail?carID=${o.carId}" title="View car">${o.name}</a></h4>
                                     <p class="card-text show_txt">${o.name}</p>
                                     <div class="row">
@@ -78,7 +83,7 @@
     <jsp:include page="Footer.jsp"></jsp:include>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        function searchByName(param){
+        function searchByName(param) {
             var txtSearch = param.value;
             $.ajax({
                 url: "/Project/searchAjax",

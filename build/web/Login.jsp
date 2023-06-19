@@ -30,11 +30,6 @@
                 <p class="text-danger">${mess}</p>
                 <input name="user"  type="text" id="inputEmail" class="form-control" placeholder="Tên đăng nhập" required="" autofocus="">
                 <input name="pass"  type="password" id="inputPassword" class="form-control" placeholder="Mật khẩu" required="">
-
-                <div class="form-group form-check">
-                    <input name="remember" value="1" type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Nhớ mật khẩu</label>
-                </div>
                 <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i>Đăng nhập</button>
                 <hr>
                 <a href="Register.jsp" class="btn btn-success" style = "background-color: #0066ff; margin-bottom: 10px; color: white">Đăng kí</a>    

@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SUMMER23-KI%205/SWP391/CarRentalManagement-master/CarRentalManagement-master/src/java/ManagerControl/AddCarServlet.java</file>
-            <file>file:/D:/SUMMER23-KI%205/SWP391/CarRentalManagement-master/CarRentalManagement-master/src/java/dao/DAO.java</file>
-            <file>file:/D:/SUMMER23-KI%205/SWP391/CarRentalManagement-master/CarRentalManagement-master/src/java/entity/Car.java</file>
-            <file>file:/D:/SUMMER23-KI%205/SWP391/CarRentalManagement-master/CarRentalManagement-master/src/java/entity/Location.java</file>
+            <file>file:/C:/Users/Kuro/Downloads/CarRentalManagement-master/CarRentalManagement-master/test/Test/Test1.java</file>
+            <file>file:/C:/Users/Kuro/Downloads/CarRentalManagement-master/CarRentalManagement-master/src/java/CustomerControl/BookCarControl.java</file>
+            <file>file:/C:/Users/Kuro/Downloads/CarRentalManagement-master/CarRentalManagement-master/src/java/entity/Car.java</file>
+            <file>file:/C:/Users/Kuro/Downloads/CarRentalManagement-master/CarRentalManagement-master/web/Menu.jsp</file>
+            <file>file:/C:/Users/Kuro/Downloads/CarRentalManagement-master/CarRentalManagement-master/web/Home.jsp</file>
+            <file>file:/C:/Users/Kuro/Downloads/CarRentalManagement-master/CarRentalManagement-master/src/java/control/DetailCarControl.java</file>
+            <file>file:/C:/Users/Kuro/Downloads/CarRentalManagement-master/CarRentalManagement-master/src/java/dao/DAO.java</file>
         </group>
     </open-files>
 </project-private>

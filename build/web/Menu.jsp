@@ -3,9 +3,11 @@
 <!--begin of menu-->
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" style="color: white">Xin chào </a>
+        <a class="navbar-brand" href="home" style="color: white">
+            <i class="fa fa-home"></i> Xin chào
+        </a>
         <c:if test="${sessionScope.acc != null}">
-            <a style="color: white"><c:out value = " ${sessionScope.fullname}"/></a>
+            <a style="color: white"><c:out value = " ${sessionScope.cus.fullName}"/></a>
         </c:if>
         <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
             <ul class="navbar-nav" style="text-align: right">
@@ -21,7 +23,7 @@
                     <c:otherwise>
                         <c:if test="${sessionScope.acc == 3}">
                             <li class="nav-item" style="display: flex">
-                                <a class="nav-link" href="ManagerRentalControl">Đơn đặt hàng</a>
+                                <a class="nav-link" href="ManageRentalControl">Đơn đặt hàng</a>
                             </li>
                         </c:if>
                         <c:if test="${sessionScope.acc == 1}">
