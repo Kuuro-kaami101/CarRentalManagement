@@ -27,7 +27,7 @@
             .cover-car{
                 height: 560px;
                 width: 1060px;
-/*                background: red;*/
+                /*                background: red;*/
                 margin-bottom: 32px;
             }
             .m-container{
@@ -35,7 +35,7 @@
                 height: 560px;
                 position: relative;
                 display: block;
-/*                background: blue;*/
+                /*                background: blue;*/
                 margin-left: 50px;
 
 
@@ -43,7 +43,7 @@
             .detail-car{
                 height: 3565px;
                 width: 1060px;
-/*                background: black;*/
+                /*                background: black;*/
             }
             .cover-car-item img{
                 height: 560px;
@@ -51,13 +51,13 @@
                 border-radius: 10px;
             }
             .detail-car .m-container{
-/*                background: yellow;*/
+                /*                background: yellow;*/
                 width: 960px;
                 height: 2948px;
             }
 
             .content-detail{
-/*                background: green;*/
+                /*                background: green;*/
                 width: 636px;
                 height: 144px;
                 float: left;
@@ -244,7 +244,7 @@
                                             <div class="group-action d-flex-center-btw">
                                                 <div class="share">
                                                     <div class="wrap-svg wrap-ic share">
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -264,8 +264,8 @@
                                     </div>
                                 </div>
                                 <div class="sidebar-detail">
-                                    
-                                        <form action="BookCarControl" method="get">
+
+                                    <form action="BookCarControl" method="get">
                                         <input type="hidden" name="cusID" value="${cus.customerId}">
                                         <input name="carId" value="${detail.carId}" type="hidden">
                                         <div class="rent-box" id="cardetail" style="position: relative;">
@@ -320,10 +320,10 @@
                                                                 <path d="M12 17H12.01" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                                                 </svg>
                                                             </span>
-<!--                                                            <p class="cost">
-                                                                <input name="cost" value="${detail.cost}" type="hidden"> 
-                                                                <span>${detail.cost} 000đ/ngày</span>
-                                                            </p>-->
+                                                            <!--                                                            <p class="cost">
+                                                                                                                            <input name="cost" value="${detail.cost}" type="hidden"> 
+                                                                                                                            <span>${detail.cost} 000đ/ngày</span>
+                                                                                                                        </p>-->
                                                 </div>
 
                                                 <div class="line-page"></div>
@@ -335,24 +335,24 @@
                                                         </svg>
                                                     </div><p style="margin:0px">Sử dụng mã khuyến mãi</p></div><div class="line-page"></div><div class="price-item total">
 <!--                                                            <p>Tổng cộng</p><p class="cost"><span>${detail.cost} 000đ</span></p></div></div>-->
-                                                            <button class="btn btn-outline-primary" type="submit">Đặt xe</button>   
+                                                    <button class="btn btn-outline-primary" type="submit">Đặt xe</button>   
                                                 </div> 
                                             </div>
                                         </div>
                                     </form>
-                                    
-                                    
+
+
                                 </div>
                                 </section>
                             </div>
                         </div>
-<%--                        <c:if test="${bookError != null}">
-                            <script>
-                                window.addEventListener("load", function () {
-                                    alert("${bookError}");
-                                })
-                            </script>
-                        </c:if>--%>
+                        <%--                        <c:if test="${bookError != null}">
+                                                    <script>
+                                                        window.addEventListener("load", function () {
+                                                            alert("${bookError}");
+                                                        })
+                                                    </script>
+                                                </c:if>--%>
                         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
                         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                         <script>

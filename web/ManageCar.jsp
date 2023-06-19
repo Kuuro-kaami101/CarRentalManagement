@@ -25,7 +25,7 @@
             .title{
                 display: flex;
                 justify-content: center;
-                
+
             }
 
             .title h2 {
@@ -104,34 +104,34 @@
             }
             body{
                 overflow-x:hidden;
-              
+
             }
             .table-title{
                 margin-top: 10px;
             }
-            
-            
+
+
         </style>
-         <script type="text/javascript">
-            function deleteCar(id){
-                if(confirm("Do you want to delete Car have Car_ID: "+id)){
-                    window.location="deleteCar?id="+id;
+        <script type="text/javascript">
+            function deleteCar(id) {
+                if (confirm("Do you want to delete Car have Car_ID: " + id)) {
+                    window.location = "deleteCar?id=" + id;
                 }
             }
         </script>
     </head>
     <body lang="en">
         <div class="table-title ">
-        <div class="row" style="width:auto">
-            <div class="col-sm-6">
-                <h2>Manage <b>Product</b></h2>
-            </div>
-            <div class="col-sm-6">
-                <a href="#addEmployeeModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
+            <div class="row" style="width:auto">
+                <div class="col-sm-6">
+                    <h2>Manage <b>Product</b></h2>
+                </div>
+                <div class="col-sm-6">
+                    <a href="#addEmployeeModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
+                </div>
             </div>
         </div>
-    </div>
-    
+
         <table class="table table-striped table-hover">
             <tr>
                 <th>ID</th>
@@ -159,13 +159,11 @@
                     <td class="button-container">
                         <a href="loadCar?carId=${car.carId}" class="edit-button" >Sửa</a>
                         <a class="delete-button" onclick="deleteCar(${car.carId});">Xóa</a>
-                        
                     </td>
                 </tr>
             </c:forEach>
-                
         </table>
-<!-- Edit Modal HTML -->
+        <!-- Edit Modal HTML -->
         <div id="addEmployeeModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -175,48 +173,48 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input  name="name" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Category</label>
-                                    <select name="category" class="form-select" aria-label="Default select example">
-                                        <c:forEach items="${listCategory}" var="o">
-                                            <option value="${o.cid}">${o.cname}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Detail</label>
-                                    <textarea name="detail" class="form-control" required></textarea>
-                                </div> 
-                                <div class="form-group">
-                                    <label>Registration Number</label>
-                                    <input name="regisnum" type="text" class="form-control"required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <select name="address" class="form-select" aria-label="Default select example">
-                                        <c:forEach items="${listlocation}" var="l">
-                                            <option value="${l.locationId}">${l.address}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Image</label>
-                                    <input name="image" type="text" class="form-control" required>                                   
-                                </div>
-                                <div class="form-group">
-                                    <label>Price</label>
-                                    <input name="price" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Status</label>
-                                    <textarea name="status" class="form-control" required></textarea>
-                                </div>
-                                
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input  name="name" type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select name="category" class="form-select" aria-label="Default select example">
+                                    <c:forEach items="${listCategory}" var="o">
+                                        <option value="${o.cid}">${o.cname}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Detail</label>
+                                <textarea name="detail" class="form-control" required></textarea>
+                            </div> 
+                            <div class="form-group">
+                                <label>Registration Number</label>
+                                <input name="regisnum" type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <select name="address" class="form-select" aria-label="Default select example">
+                                    <c:forEach items="${listlocation}" var="l">
+                                        <option value="${l.locationId}">${l.address}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Image</label>
+                                <input name="image" type="text" class="form-control" required>                                   
+                            </div>
+                            <div class="form-group">
+                                <label>Price</label>
+                                <input name="price" type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Status</label>
+                                <textarea name="status" class="form-control" required></textarea>
+                            </div>
+
 
                         </div>
                         <div class="modal-footer">
@@ -227,7 +225,7 @@
                 </div>
             </div>
         </div>
-<!--End edit   -->
+        <!--End edit   -->
         <script src="js/manager.js" type="text/javascript"></script>
     </body>
 </html>
