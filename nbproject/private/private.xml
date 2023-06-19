@@ -3,26 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/src/java/context/DBContext.java</file>
             <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/src/java/control/ManageCustomerControl.java</file>
-            <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/src/java/control2/DeleteItemControl.java</file>
             <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/web/ManageCustomer.jsp</file>
+            <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/web/UpdateCustomer.jsp</file>
             <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/src/java/control2/DeleteCustomer.java</file>
-            <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/src/java/control/ManageCarControl.java</file>
-            <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/src/java/control2/ManagerControl.java</file>
-            <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/src/java/control/ManageStaffControl.java</file>
-            <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/src/java/control2/SearchByAjax.java</file>
-            <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/src/java/control/CategoryControl.java</file>
+            <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/src/java/control2/UpdateCustomer.java</file>
             <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/src/java/dao/DAO.java</file>
-            <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/src/java/control2/ManagerCategory.java</file>
-            <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/web/ManageStaff.jsp</file>
-            <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/src/java/control2/DeleteAccountControl.java</file>
-            <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/web/Home.jsp</file>
-            <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/src/java/control2/DeleteProductControl.java</file>
-            <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/web/Menu.jsp</file>
-            <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/src/java/entity/Customer.java</file>
-            <file>file:/C:/Users/DELL/Downloads/CarRentalManagement-master/web/Footer.jsp</file>
         </group>
     </open-files>
 </project-private>
