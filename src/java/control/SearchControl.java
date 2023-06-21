@@ -25,6 +25,6 @@ public class SearchControl extends HttpServlet {
         request.setAttribute("listCategory", listCategory);
         List<Location> listlocation = dao.getAllLocation();
         request.setAttribute("listlocation", listlocation);
-        request.getRequestDispatcher("Home.jsp").forward(request, response);
+        request.getRequestDispatcher("SearchResult.jsp").forward(request, response);
     }
 }

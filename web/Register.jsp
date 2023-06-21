@@ -60,7 +60,7 @@
                 </div>
                 <div class="form-group">
                     <label for="phone">Số điện thoại:</label>
-                    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+                    <input type="tel" id="phone" name="phone" pattern="0[0-9]{9}" required>
                 </div>
                 <div class="form-group">
                     <label for="driverLicenseNumber">Số giấy phép lái xe:</label>

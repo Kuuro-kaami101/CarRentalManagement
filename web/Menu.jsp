@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!--begin of menu-->
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="home" style="color: white">
@@ -41,6 +40,7 @@
                         <c:if test="${sessionScope.acc == 4}"> 
                             <li class="nav-item" style="display: flex" >
                                 <a class="nav-link" href="editAccount.jsp">Tài khoản</a>
+                                <a class="nav-link" href="CartControl?cusId=${cus.customerId}">Đơn thuê xe</a>                            
                             </li> 
                         </c:if>
                         <li class="nav-item" style="display: flex">
@@ -52,7 +52,4 @@
         </div>
     </div>
 </nav>
-<section class="jumbotron" style = "background-image: url(images/Logo.jpg); background-size: 100% 100%; height: 500px; border-radius: 0%;">
-    <div class="container">
-    </div>
-</section>
+

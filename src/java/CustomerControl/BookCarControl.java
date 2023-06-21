@@ -67,24 +67,6 @@ public class BookCarControl extends HttpServlet {
             dao.addRentalItem(rt);
             response.sendRedirect("home");
         }
-/*         
-        int cusId = cus.getCustomerId();
-        
-        int locationId = 0;
-        if (address.equals("Quận Thanh Xuân, Hà Nội")) {
-            locationId = 1;
-        } else if (address.equals("Quận 1, Hồ Chí Minh")) {
-            locationId = 2;
-        } else if (address.equals("Quận Ngũ Hành Sơn, Đà Nẵng")) {
-            locationId = 3;
-        } else if (address.equals("Quận Sơn Trà, Đà Nẵng")) {
-            locationId = 4;
-        } else {
-            locationId = 5;
-        }
-        
-
-        */
     }
 
     @Override

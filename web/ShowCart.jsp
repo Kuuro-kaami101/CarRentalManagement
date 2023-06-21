@@ -100,7 +100,7 @@
             </div>
             <div>
                 <c:if test="${cart.status eq 'checked'}">
-                    <a href="payment.jsp" class="pay-btn">Thanh toán</a>
+                    <a href="pay" class="pay-btn">Thanh toán</a>
                 </c:if>
             </div>
         </c:forEach>
