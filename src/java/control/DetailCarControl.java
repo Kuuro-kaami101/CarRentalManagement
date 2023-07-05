@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
 
 @WebServlet(name = "DetailCarControl", urlPatterns = {"/detail"})
 public class DetailCarControl extends HttpServlet {
@@ -17,14 +18,17 @@ public class DetailCarControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         int carId = Integer.parseInt(request.getParameter("carId"));
+        String carIdraw =request.getParameter("carId");
         String startDate = request.getParameter("startDate");
         String endDate = request.getParameter("endDate");
         CarDAO carDAO = new CarDAO();
         Car c = carDAO.getCarByID2(carId);
+        List<Moreinfo> cinfo =carDAO.getAllCarinfo();
         session.setAttribute("location", c.getAddress());
         request.setAttribute("startDate", startDate);
         request.setAttribute("endDate", endDate);
         session.setAttribute("detail", c);
+        session.setAttribute("listinfo", cinfo);
         request.setAttribute("bookError", (String)request.getAttribute("bookError"));
         request.getRequestDispatcher("Detail.jsp").forward(request, response);
     }

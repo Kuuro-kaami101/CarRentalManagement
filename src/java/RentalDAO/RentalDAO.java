@@ -171,6 +171,26 @@ public class RentalDAO {
         }
         return list;
     }
+    public void deleteRetalItembyID(int id) {
+        String sql = "DELETE FROM [dbo].[RentalItems]\n" + "WHERE car_id=?";
+        try ( Connection con = getConnect()) {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    public void deleteRetalbyID(int id) {
+        String sql = "DELETE FROM [dbo].[RentalItems]\n" + "WHERE rental_id=?";
+        try ( Connection con = getConnect()) {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
 
     public  void updateRentalStatus(int rentalId) {
         String query = "UPDATE Rentals SET rental_status = N'Unpay' WHERE rental_id = ?";

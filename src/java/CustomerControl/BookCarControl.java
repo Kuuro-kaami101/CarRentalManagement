@@ -72,16 +72,6 @@ public class BookCarControl extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("detail?carId=" + car.getCarId());
                 rd.include(request, response);
             }
-            //Rental rental = new Rental(rentalId, cusID_raw, startDate, endDate, locationID, totalCost, status);
-            //dao.addRental(rental);
-/*            int rentalItemId = 1;
-            int carId = Integer.parseInt(request.getParameter("carId"));
-            for (RentalItem r : dao.getAllRentalItem()) {
-                rentalItemId++;
-            }
-            RentalItem rt = new RentalItem(rentalItemId, rentalId, carId);
-            dao.addRentalItem(rt);
-            response.sendRedirect("home");*/
         }
     }
 

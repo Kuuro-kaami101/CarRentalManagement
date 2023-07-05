@@ -25,6 +25,7 @@ public class HomeControl extends HttpServlet {
         request.setAttribute("listCar", listCar);
         request.setAttribute("listLocation", listLocation);
         request.setAttribute("listCategory", listCategory);
+        request.setAttribute("searchError", (String)request.getAttribute("searchError"));
         request.getRequestDispatcher("Home.jsp").forward(request, response);
     }
 

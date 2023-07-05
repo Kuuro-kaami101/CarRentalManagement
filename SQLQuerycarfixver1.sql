@@ -44,6 +44,7 @@ title NVARCHAR(MAX),
 );
 --
 Create Table Moreinfo(
+moreinfo_id INT PRIMARY KEY,
 Transmission NVARCHAR(30),
 Fuel NVARCHAR(10),
 consumption NVARCHAR(30)
@@ -54,6 +55,7 @@ CREATE TABLE Cars (
 car_id INT IDENTITY(1,1) PRIMARY KEY,
 name NVARCHAR(50),
 category_id INT,
+moreinfo_id INT,
 detail NVARCHAR(MAX),
 registration_number NVARCHAR(20),
 location_id INT,
@@ -61,7 +63,8 @@ image NVARCHAR(20),
 price_per_day int,
 status Nvarchar(20),
 FOREIGN KEY (location_id) REFERENCES Locations(location_id),
-FOREIGN KEY (category_id) REFERENCES Categories(category_id)
+FOREIGN KEY (category_id) REFERENCES Categories(category_id),
+FOREIGN KEY (moreinfo_id) REFERENCES Moreinfo(moreinfo_id)
 );
 
 -- Tạo bảng Rentals
@@ -170,7 +173,14 @@ VALUES
 	(3, N'5 chỗ (gầm cao)'), 
 	(4, N'7 chỗ (gầm cao)'),
 	(5, N'Bán tải');
-
+--NHập dữ liệu Moreinfo
+INSERT INTO Moreinfo
+VALUES
+     (1,N'Số tự động',N'Xăng',N'5lít/100km'),
+	 (2,N'Số sàn',N'Dầu',N'8lít/100km'),
+	 (3,N'Số tự động',N'Dầu',N'7lít/100km'),
+	 (4,N'Số sàn',N'Xăng',N'9lít/100km'),
+	 (5,N'Số tự động',N'Dầu',N'6lít/100km');
 -- Nhập dữ liệu Locations
 INSERT INTO Locations (location_id, address)
 VALUES
@@ -182,23 +192,23 @@ VALUES
 
 -- Nhập dữ liệu Cars
 SET IDENTITY_INSERT Cars ON;
-INSERT INTO Cars (car_id, name, category_id, detail, registration_number, location_id, image, price_per_day, status)
+INSERT INTO Cars (car_id, name, category_id,moreinfo_id, detail, registration_number, location_id, image, price_per_day, status)
 VALUES
-  (1, N'FORD RANGER RAPTOR 2019', 1, N'Bán tải Ford Raptor máy dầu số tự động . Đăng ký 1/2019. Xe full option gia đình sử dụng. Full chức năng hỗ trợ lái xe an toàn. Rửa xe miễn phí cho khách. Dạng nắp thùng cuộn', 'ABC123', 1, 'car1.jpg', 200, 'Available'),
-  (2, N'HYUNDAI ACCENT 2022', 1, N'Vinfast LUX A 2.0, sản xuất 2020. Xe mới sạch-mạnh-rộng rãi-xe trang bị', 'DEF456', 2, 'car2.jpg', 150, 'Available'),
-  (3, N'MAZDA 3', 1, N'MAZDA 3 tự động, sản xuất 6/2018. Cruise Control, phanh tay điện tử,...Xe gia đình không mùi', 'GHI789', 3, 'car3.jpg', 180, 'Available'),
-  (4, N'VINFAST FADIL 2020', 2, N'VinfastFadil, san xuat 2020. Xe gia dinh', 'JKL012', 4, 'car4.jpg', 130, 'Available'),
-  (5, N'VINFAST LUX A 2.0', 1, N'Vinfast LUX A 2.0, san xuat 2020. Xe mới sạch-manh-rộng rãi-xe trang bị', 'MNO345', 5, 'car5.jpg', 160, 'Available'),
-  (6, N'KIA K5 2022', 3, N'KIA K5 Trùm phân khúc sedan hạng D. Xe đăng ký mới 2022 KIA K5 là mẫu mới dành cho anh/chị em muốn thuê trải nghiệm, mang phiên bản Prenium màu đỏ công nghệ 4.0 hiện đại chạy rất sướng trên mọi cung đường. Xe có trang bị thêm bộ mâm VLT giúp xe chạy nhẹ, êm hơn bản zin và đẹp xe hơn.', 'PQR678', 1, 'car6.jpg', 190, 'Available'),
-  (7, N'KIA MORNING 2017', 3, N'Xe rất Tiết Kiệm Xăng . bảo dưỡng tốt. Có cảm biến mùi, bảo hiểm 2 chiều, Anh Chị an tâm sử dụng. Xe Được khử khuẩn Nano sau mỗi lần sử dụng', 'STU901', 2, 'car7.jpg', 140, 'Available'),
-  (8, N'MORRIS GARAGES MG5 STANDARD 2022', 2, N'Xe mới tháng 11/2022', 'VWX234', 3, 'car8.jpg', 170, 'Available'),
-  (9, N'VINFAST FADIL 2019', 3, N'Xe Fadil bản Full, gia đình đi nên sạch sẽ thơm tho. Nội thất đẹp, ghế da sang trọng. Siêu tiết kiệm xăng.', 'YZA567', 4, 'car9.jpg', 150, 'Available'),
-  (10, N'VINFAST FADIL 2022', 3, N'Xe sạch sẽ, thơm tho, có bảo hiểm', 'BCD890', 5, 'car10.jpg', 140, 'Available'),
-  (11, N'CHEVROLET CAPTIVA 2016', 4, N'Xe Captiva đã được đầu tư trang bị tận răng mọi tiện nghi của xe, bản cao cấp nhất của Chevrolet, trang bị thêm phi thuyền phù hợp các chuyến đi cần để hành lí nhiều.', 'EFG123', 1, 'car11.jpg', 180, 'Available'),
-  (12, N'HYUNDAI SANTA FE 2018', 4, N'Huynhdai santafe số tự động đăng ký thá 4/2018. Xe gia đình mới đep . Nội thất nguyen bản, sạch sẽ , bảo dưỡng thường xuyen, rửa xe miễn phi cho khách.Xe rộng  rãi,an toàn, tiện nghi phù hợp cho gia đình đi du lich . Xe được trang bị hệ thống đầy đủ và hiện đại', 'HIJ456', 2, 'car12.jpg', 200, 'Available'),
-  (13, N'MITSUBISHI XPANDER 2019', 5, N'Xpander 2019, màu bạc, 7 chỗ, xe mới. Xe gia đình nên được giữ gìn cẩn thận, bảo dưỡng định kỳ.', 'KLM789', 3, 'car13.jpg', 170, 'Available'),
-  (14, N'MITSUBISHI XPANDER 2020', 5, N'Xe gia đình hiệu Xpander màu đỏ, số tự động. 7 chỗ đa dụng, rộng rãi. Động cơ 1.5đủ dùng đi trong phố hoặc tham quan các điểm du lịch. Xe sản xuất và nhập tháng 10/2019. Được trang bị màn hình DVD, camera lùi, la răng đúc.', 'NOP012', 4, 'car14.jpg', 190, 'Available'),
-  (15, N'FORD ECOSPORT 2021', 5, N'Ford EcoSport 2021, số tự động, màu xanh ngọc. Xe mới đẹp, đồng hồ đọc Km 4,000km. Điều hòa mát, ghế nỉ, màn hình camera lùi, gương chỉnh điện, đèn pha cảm biến anh sáng. Gương gập chỉnh điện, mâm đúc 17. Cảm biến trước sau', 'QRS345', 5, 'car15.jpg', 160, 'Available');
+  (1, N'FORD RANGER RAPTOR 2019', 1,1, N'Bán tải Ford Raptor máy dầu số tự động . Đăng ký 1/2019. Xe full option gia đình sử dụng. Full chức năng hỗ trợ lái xe an toàn. Rửa xe miễn phí cho khách. Dạng nắp thùng cuộn', 'ABC123', 1, 'car1.jpg', 200, 'Available'),
+  (2, N'HYUNDAI ACCENT 2022', 1,3, N'Vinfast LUX A 2.0, sản xuất 2020. Xe mới sạch-mạnh-rộng rãi-xe trang bị', 'DEF456', 2, 'car2.jpg', 150, 'Available'),
+  (3, N'MAZDA 3', 1,5, N'MAZDA 3 tự động, sản xuất 6/2018. Cruise Control, phanh tay điện tử,...Xe gia đình không mùi', 'GHI789', 3, 'car3.jpg', 180, 'Available'),
+  (4, N'VINFAST FADIL 2020', 2,4, N'VinfastFadil, san xuat 2020. Xe gia dinh', 'JKL012', 4, 'car4.jpg', 130, 'Available'),
+  (5, N'VINFAST LUX A 2.0', 1,2, N'Vinfast LUX A 2.0, san xuat 2020. Xe mới sạch-manh-rộng rãi-xe trang bị', 'MNO345', 5, 'car5.jpg', 160, 'Available'),
+  (6, N'KIA K5 2022', 3,1, N'KIA K5 Trùm phân khúc sedan hạng D. Xe đăng ký mới 2022 KIA K5 là mẫu mới dành cho anh/chị em muốn thuê trải nghiệm, mang phiên bản Prenium màu đỏ công nghệ 4.0 hiện đại chạy rất sướng trên mọi cung đường. Xe có trang bị thêm bộ mâm VLT giúp xe chạy nhẹ, êm hơn bản zin và đẹp xe hơn.', 'PQR678', 1, 'car6.jpg', 190, 'Available'),
+  (7, N'KIA MORNING 2017', 3,4, N'Xe rất Tiết Kiệm Xăng . bảo dưỡng tốt. Có cảm biến mùi, bảo hiểm 2 chiều, Anh Chị an tâm sử dụng. Xe Được khử khuẩn Nano sau mỗi lần sử dụng', 'STU901', 2, 'car7.jpg', 140, 'Available'),
+  (8, N'MORRIS GARAGES MG5 STANDARD 2022', 2,2, N'Xe mới tháng 11/2022', 'VWX234', 3, 'car8.jpg', 170, 'Available'),
+  (9, N'VINFAST FADIL 2019', 3,5, N'Xe Fadil bản Full, gia đình đi nên sạch sẽ thơm tho. Nội thất đẹp, ghế da sang trọng. Siêu tiết kiệm xăng.', 'YZA567', 4, 'car9.jpg', 150, 'Available'),
+  (10, N'VINFAST FADIL 2022', 3,1, N'Xe sạch sẽ, thơm tho, có bảo hiểm', 'BCD890', 5, 'car10.jpg', 140, 'Available'),
+  (11, N'CHEVROLET CAPTIVA 2016', 4,1, N'Xe Captiva đã được đầu tư trang bị tận răng mọi tiện nghi của xe, bản cao cấp nhất của Chevrolet, trang bị thêm phi thuyền phù hợp các chuyến đi cần để hành lí nhiều.', 'EFG123', 1, 'car11.jpg', 180, 'Available'),
+  (12, N'HYUNDAI SANTA FE 2018', 4,3, N'Huynhdai santafe số tự động đăng ký thá 4/2018. Xe gia đình mới đep . Nội thất nguyen bản, sạch sẽ , bảo dưỡng thường xuyen, rửa xe miễn phi cho khách.Xe rộng  rãi,an toàn, tiện nghi phù hợp cho gia đình đi du lich . Xe được trang bị hệ thống đầy đủ và hiện đại', 'HIJ456', 2, 'car12.jpg', 200, 'Available'),
+  (13, N'MITSUBISHI XPANDER 2019', 5,4, N'Xpander 2019, màu bạc, 7 chỗ, xe mới. Xe gia đình nên được giữ gìn cẩn thận, bảo dưỡng định kỳ.', 'KLM789', 3, 'car13.jpg', 170, 'Available'),
+  (14, N'MITSUBISHI XPANDER 2020', 5,1, N'Xe gia đình hiệu Xpander màu đỏ, số tự động. 7 chỗ đa dụng, rộng rãi. Động cơ 1.5đủ dùng đi trong phố hoặc tham quan các điểm du lịch. Xe sản xuất và nhập tháng 10/2019. Được trang bị màn hình DVD, camera lùi, la răng đúc.', 'NOP012', 4, 'car14.jpg', 190, 'Available'),
+  (15, N'FORD ECOSPORT 2021', 5,2, N'Ford EcoSport 2021, số tự động, màu xanh ngọc. Xe mới đẹp, đồng hồ đọc Km 4,000km. Điều hòa mát, ghế nỉ, màn hình camera lùi, gương chỉnh điện, đèn pha cảm biến anh sáng. Gương gập chỉnh điện, mâm đúc 17. Cảm biến trước sau', 'QRS345', 5, 'car15.jpg', 160, 'Available');
 
 -- Thêm dữ liệu cho bảng SpecialPeriods
 INSERT INTO SpecialPeriods (special_period_id, start_date, end_date, holiday_name)
@@ -293,3 +303,19 @@ WHERE NOT EXISTS (
 INSERT INTO Cars (name, category_id, detail, registration_number, location_id, image, price_per_day, status)
 VALUES
   ( N'FORD RANGER RAPTOR 2019', 1, N'Bán tải Ford Raptor máy dầu số tự động . Đăng ký 1/2019. Xe full option gia đình sử dụng. Full chức năng hỗ trợ lái xe an toàn. Rửa xe miễn phí cho khách. Dạng nắp thùng cuộn', 'ABC123', 1, 'car1.jpg', 200, 'Available')
+
+
+Select Cars.name, Moreinfo.Transmission, Moreinfo.Fuel,Moreinfo.consumption
+FROM Moreinfo
+Join Cars ON Cars.moreinfo_id=Moreinfo.moreinfo_id
+where Cars.car_id=3
+
+insert into Customers
+values (1,N'Ngọc Hùng',N'ngochung@gmail.com',N'0905123456',N'098765432122',N'hung123',N'hung123')
+
+SELECT Cars.car_id, Cars.name AS car_name, Categories.title AS category_title,Cars.moreinfo_id, Cars.detail, Cars.registration_number, Locations.address, Cars.image, Cars.price_per_day, Cars.status
+                FROM Cars
+                JOIN Categories ON Cars.category_id = Categories.category_id
+                JOIN Locations ON Cars.location_id = Locations.location_id
+				JOIN Moreinfo ON Cars.moreinfo_id=Moreinfo.moreinfo_id
+				select * from Moreinfo

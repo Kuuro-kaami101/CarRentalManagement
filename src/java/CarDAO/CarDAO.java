@@ -14,11 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import entity.Car;
-import entity.Category;
-import entity.Customer;
-import entity.Staff;
-import java.sql.Statement;
 import entity.*;
 import java.sql.CallableStatement;
 import java.sql.Types;
@@ -41,10 +36,11 @@ public class CarDAO {
 
     public List<Car> getAllCar() {
         List<Car> list = new ArrayList<>();
-        String query = "SELECT Cars.car_id, Cars.name AS car_name, Categories.title AS category_title, Cars.detail, Cars.registration_number, Locations.address, Cars.image, Cars.price_per_day, Cars.status\n"
+        String query = "SELECT Cars.car_id, Cars.name AS car_name, Categories.title AS category_title,Cars.moreinfo_id, Cars.detail, Cars.registration_number, Locations.address, Cars.image, Cars.price_per_day, Cars.status\n"
                 + "FROM Cars\n"
                 + "JOIN Categories ON Cars.category_id = Categories.category_id\n"
-                + "JOIN Locations ON Cars.location_id = Locations.location_id\n";
+                + "JOIN Locations ON Cars.location_id = Locations.location_id\n"
+                + "JOIN Moreinfo ON Cars.moreinfo_id=Moreinfo.moreinfo_id";
         try ( Connection con = getConnect()) {
             PreparedStatement stmt = con.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
@@ -52,12 +48,13 @@ public class CarDAO {
                 list.add(new Car(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getString(4),
+                        rs.getInt(4),
                         rs.getString(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getInt(8),
-                        rs.getString(9)));
+                        rs.getString(8),
+                        rs.getInt(9),
+                        rs.getString(10)));
             }
             con.close();
         } catch (Exception ex) {
@@ -68,10 +65,11 @@ public class CarDAO {
 
     public List<Car> getAllCarByLocationAndDate(int locationId, String startDate, String endDate) {
         List<Car> list = new ArrayList<>();
-        String query = "SELECT c.car_id, c.name, ca.title, c.detail, c.registration_number, l.address, c.image, c.price_per_day, c.status\n"
+        String query = "SELECT c.car_id, c.name, ca.title,mi.moreinfo_id, c.detail, c.registration_number, l.address, c.image, c.price_per_day, c.status\n"
                 + "FROM cars c\n"
                 + "JOIN Locations l ON c.location_id = l.location_id\n"
                 + "JOIN Categories ca ON c.category_id = ca.category_id\n"
+                + "JOIN Moreinfo mi ON Cars.moreinfo_id=Moreinfo.moreinfo_id\n"
                 + "LEFT JOIN RentalItems ri ON c.car_id = ri.car_id\n"
                 + "LEFT JOIN Rentals r ON ri.rental_id = r.rental_id\n"
                 + "    WHERE NOT EXISTS (\n"
@@ -94,12 +92,13 @@ public class CarDAO {
                 list.add(new Car(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getString(4),
+                        rs.getInt(4),
                         rs.getString(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getInt(8),
-                        rs.getString(9)));
+                        rs.getString(8),
+                        rs.getInt(9),
+                        rs.getString(10)));
             }
             con.close();
         } catch (Exception ex) {
@@ -142,10 +141,11 @@ public class CarDAO {
 
     public  Car getCarByID(String id) {
         Car c = new Car();
-        String query = "SELECT Cars.car_id, Cars.name AS car_name, Categories.title AS category_title, Locations.address, Cars.detail, Cars.registration_number, Cars.image, Cars.price_per_day, Cars.status\n"
+        String query = "SELECT Cars.car_id, Cars.name AS car_name, Categories.title AS category_title,Cars.moreinfo_id, Locations.address, Cars.detail, Cars.registration_number, Cars.image, Cars.price_per_day, Cars.status\n"
                 + "FROM Cars \n"
                 + "JOIN Categories ON Cars.category_id = Categories.category_id \n"
                 + "JOIN Locations ON Cars.location_id = Locations.location_id\n"
+                +   "JOIN Moreinfo ON Cars.moreinfo_id=Moreinfo.moreinfo_id\n"
                 + "WHERE Cars.car_id = ?";
         try ( Connection con = getConnect()) {
             PreparedStatement ps = con.prepareStatement(query);
@@ -155,12 +155,13 @@ public class CarDAO {
                 c = new Car(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getString(4),
+                        rs.getInt(4),
                         rs.getString(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getInt(8),
-                        rs.getString(9));
+                        rs.getString(8),
+                        rs.getInt(9),
+                        rs.getString(10));
             }
         } catch (Exception ex) {
             Logger.getLogger(CarDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -170,10 +171,11 @@ public class CarDAO {
 
     public  Car getCarByID2(int cid) {
         Car c = new Car();
-        String query = "SELECT Cars.car_id, Cars.name AS car_name, Categories.title AS category_title, Locations.address, Cars.detail, Cars.registration_number, Cars.image, Cars.price_per_day, Cars.status\n"
+        String query = "SELECT Cars.car_id, Cars.name AS car_name, Categories.title AS category_title,Cars.moreinfo_id, Locations.address, Cars.detail, Cars.registration_number, Cars.image, Cars.price_per_day, Cars.status\n"
                 + "FROM Cars \n"
                 + "JOIN Categories ON Cars.category_id = Categories.category_id \n"
                 + "JOIN Locations ON Cars.location_id = Locations.location_id\n"
+                + "JOIN Moreinfo ON Cars.moreinfo_id=Moreinfo.moreinfo_id\n"
                 + "WHERE Cars.car_id = ?";
         try ( Connection con = getConnect()) {
             PreparedStatement statement = con.prepareStatement(query);
@@ -183,13 +185,14 @@ public class CarDAO {
                 int carId = resultSet.getInt("car_id");
                 String name = resultSet.getString("car_name");
                 String categoryId = resultSet.getString("category_title");
+                int infoid = resultSet.getInt("moreinfo_id");
                 String detail = resultSet.getString("detail");
                 String registrationNumber = resultSet.getString("registration_number");
                 String locationId = resultSet.getString("address");
                 String image = resultSet.getString("image");
                 int pricePerDay = resultSet.getInt("price_per_day");
                 String status = resultSet.getString("status");
-                c = new Car(carId, name, categoryId, detail, registrationNumber, locationId, image, pricePerDay, status);
+                c = new Car(carId, name, categoryId,infoid, detail, registrationNumber, locationId, image, pricePerDay, status);
             }
             resultSet.close();
             statement.close();
@@ -222,10 +225,11 @@ public class CarDAO {
 
     public List<Car> getCarBylocation(String txtSearch) {
         List<Car> list = new ArrayList<>();
-        String query = "SELECT Cars.car_id, Cars.name AS car_name, Categories.title AS category_title, Cars.detail,Cars.registration_number ,Locations.address , Cars.image, Cars.price_per_day, Cars.status\n"
+        String query = "SELECT Cars.car_id, Cars.name AS car_name, Categories.title AS category_title,Cars.moreinfo_id, Cars.detail,Cars.registration_number ,Locations.address , Cars.image, Cars.price_per_day, Cars.status\n"
                 + "FROM Cars \n"
                 + "JOIN Categories ON Cars.category_id = Categories.category_id \n"
                 + "JOIN Locations ON Cars.location_id = Locations.location_id\n"
+                + "JOIN Moreinfo ON Cars.moreinfo_id=Moreinfo.moreinfo_id\n"
                 + "WHERE Locations.address like ?";
         try ( Connection con = getConnect()) {
             PreparedStatement ps = con.prepareStatement(query);
@@ -235,12 +239,13 @@ public class CarDAO {
                 list.add(new Car(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getString(4),
+                        rs.getInt(4),
                         rs.getString(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getInt(8),
-                        rs.getString(9)));
+                        rs.getString(8),
+                        rs.getInt(9),
+                        rs.getString(10)));
             }
         } catch (Exception ex) {
             Logger.getLogger(CarDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -299,10 +304,11 @@ public class CarDAO {
 
     public  List<Car> getCarByCategoryID(String cid) {
         List<Car> list = new ArrayList<>();
-        String query = "SELECT Cars.car_id, Cars.name AS car_name, Categories.title AS category_title, Locations.address, Cars.detail, Cars.registration_number, Cars.image, Cars.price_per_day, Cars.status\n"
+        String query = "SELECT Cars.car_id, Cars.name AS car_name, Categories.title AS category_title,Cars.moreinfo_id, Locations.address, Cars.detail, Cars.registration_number, Cars.image, Cars.price_per_day, Cars.status\n"
                 + "FROM Cars \n"
                 + "JOIN Categories ON Cars.category_id = Categories.category_id \n"
                 + "JOIN Locations ON Cars.location_id = Locations.location_id\n"
+                + "JOIN Moreinfo ON Cars.moreinfo_id=Moreinfo.moreinfo_id\n"
                 + "WHERE Categories.category_id = ?";
         try ( Connection con = getConnect()) {
             PreparedStatement ps = con.prepareStatement(query);
@@ -312,16 +318,42 @@ public class CarDAO {
                 list.add(new Car(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getString(4),
+                        rs.getInt(4),
                         rs.getString(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getInt(8),
-                        rs.getString(9)));
+                        rs.getString(8),
+                        rs.getInt(9),
+                        rs.getString(10)));
             }
         } catch (Exception ex) {
             Logger.getLogger(CarDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
     }
+    public List<Moreinfo> getAllCarinfo() {
+        List<Moreinfo> list = new ArrayList<>();
+        String query = "select moreinfo_id ,Transmission ,Fuel ,consumption from Moreinfo";
+        try ( Connection con = getConnect()) {
+            PreparedStatement stmt = con.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                list.add(new Moreinfo(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4)));
+            }
+            con.close();
+        } catch (Exception ex) {
+            Logger.getLogger(CarDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+    
+    public static void main(String[] args) {
+        CarDAO c= new CarDAO();
+        List<Moreinfo> list = c.getAllCarinfo();
+        System.out.println(list.toString());
+    }
+
 }

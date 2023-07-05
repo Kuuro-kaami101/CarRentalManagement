@@ -4,6 +4,7 @@ public class Car {
     private int carId;
     private String name;
     private String category_title;
+    private int infoid;
     private String detail;
     private String registrationNumber;
     private String address;
@@ -13,10 +14,11 @@ public class Car {
     
     public Car(){};
 
-    public Car(int carId, String name, String category_title, String detail, String registrationNumber, String address, String image, int cost, String status) {
+    public Car(int carId, String name, String category_title,int infoid, String detail, String registrationNumber, String address, String image, int cost, String status) {
         this.carId = carId;
         this.name = name;
         this.category_title = category_title;
+        this.infoid=infoid;
         this.detail = detail;
         this.registrationNumber = registrationNumber;
         this.address = address;
@@ -54,6 +56,14 @@ public class Car {
 
     public void setCategory_title(String category_title) {
         this.category_title = category_title;
+    }
+
+    public int getInfoid() {
+        return infoid;
+    }
+
+    public void setInfoid(int infoid) {
+        this.infoid = infoid;
     }
 
     public String getDetail() {
@@ -106,7 +116,10 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" + "carId=" + carId + ", name=" + name + ", category_title=" + category_title + ", detail=" + detail + ", registrationNumber=" + registrationNumber + ", address=" + address + ", image=" + image + ", cost=" + cost + ", status=" + status + '}';
+        return "Car{" + "carId=" + carId + ", name=" + name + ", category_title=" + category_title + ", infoid=" + infoid + ", detail=" + detail + ", registrationNumber=" + registrationNumber + ", address=" + address + ", image=" + image + ", cost=" + cost + ", status=" + status + '}';
     }
+
+   
+    
 }
 

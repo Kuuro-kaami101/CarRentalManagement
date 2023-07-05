@@ -112,13 +112,27 @@
 
 
         </style>
-        <script type="text/javascript">
-            function deleteCar(id) {
-                if (confirm("Do you want to delete Car have Car_ID: " + id)) {
-                    window.location = "deleteCar?id=" + id;
-                }
-            }
-        </script>
+        <!--        <script type="text/javascript">
+                    function deleteCar(id) {
+                        if (confirm("Do you want to delete Car have Car_ID: " + id)) {
+                            window.location = "deleteCar?id=" + id;
+                        }
+                    }
+                </script>-->
+        <c:if test="${deletecar != null}">
+            <script>
+                window.location("load", function () {
+                    alert("${deletecar}");
+                })
+            </script>
+        </c:if>
+        <c:if test="${deletecarbook != null}">
+            <script>
+                window.addEventListener("load", function () {
+                    alert("${deletecarbook}");
+                })
+            </script>
+        </c:if> 
     </head>
     <body lang="en">
         <div class="table-title ">
@@ -158,7 +172,7 @@
                     <td>${car.status}</td>
                     <td class="button-container">
                         <a href="loadCar?carId=${car.carId}" class="edit-button" >Sửa</a>
-                        <a class="delete-button" onclick="deleteCar(${car.carId});">Xóa</a>
+                        <a href="deleteCar?carId=${car.carId}"class="delete-button" >Xóa</a>
                     </td>
                 </tr>
             </c:forEach>
@@ -225,6 +239,7 @@
                 </div>
             </div>
         </div>
+
         <!--End edit   -->
         <script src="js/manager.js" type="text/javascript"></script>
     </body>

@@ -24,11 +24,9 @@
                             <form action="SearchControl" method="get" class="search">
                                 <div class="input-group input-group-sm">
                                     <select name="locationId" class="form-control" style="height: 44px!important">
-                                        <option value="1">Quận Thanh Xuân, Hà Nội</option>
-                                        <option value="2">Quận 1, Hồ Chí Minh</option>
-                                        <option value="3">Quận Ngũ Hành Sơn, Đà Nẵng</option>
-                                        <option value="4">Quận Sơn Trà, Đà Nẵng</option>
-                                        <option value="5">Quận Thanh Khê, Đà nẵng</option>
+                                        <c:forEach items="${listlocation}" var="lo">
+                                            <option value="${lo.locationId}" >${lo.address}</option>
+                                        </c:forEach>
                                     </select>
                                     <input name="startDate" type="date" class="form-control" placeholder="Start Date" value="${startDate}">
                                     <input name="endDate" type="date" class="form-control" placeholder="End Date" value="${endDate}">
@@ -74,6 +72,13 @@
                 </div>
             </div>
         </div>
+                    <c:if test="${searchError != null}">
+                            <script>
+                                window.addEventListener("load", function () {
+                                    alert("${searchError}");
+                                })
+                            </script>
+                        </c:if>
         <jsp:include page="Footer.jsp"></jsp:include>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </body>

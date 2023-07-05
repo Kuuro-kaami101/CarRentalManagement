@@ -32,7 +32,7 @@
                                     <select id="listlo" onchange="getselectValue();" name="locationId" class="form-control" style="height: 44px!important;">
                                         <option value="1">Quận Thanh Xuân, Hà Nội</option>
                                         <option value="2">Quận 1, Hồ Chí Minh</option>
-                                        <option value="3">Quận Ngũ Hành Sơn, Đà Nẵng</option>
+                                        <option value="3" selected>Quận Ngũ Hành Sơn, Đà Nẵng</option>
                                         <option value="4">Quận Sơn Trà, Đà Nẵng</option>
                                         <option value="5">Quận Thanh Khê, Đà nẵng</option>
                                     </select>
@@ -104,16 +104,21 @@
                 </div>
             </div>
         </div>
+        <c:if test="${searchError != null}">
+            <script>
+                window.addEventListener("load", function () {
+                    alert("${searchError}");
+                })
+            </script>
+        </c:if>
 
         <jsp:include page="Footer.jsp"></jsp:include>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-            function getselectValue() {
-                var selectedValue = document.getElementById("listlo").value;
-                console.log(selectedValue);
-            }
+                function getselectValue() {
+                    var selectedValue = document.getElementById("listlo").value;
+                    console.log(selectedValue);
+                }
         </script>
         <script>
             function searchByName(param) {
