@@ -124,11 +124,13 @@
                         <c:if test="${o.rentalStatus eq 'Chưa xác nhận'}">
                             <button class="edit-button" onclick="checkRental(${o.rentalId})" data-rental-id="${o.rentalId}">Xác nhận</button>
                             <button class="edit-button" onclick="denyRental(${o.rentalId})" data-rental-id="${o.rentalId}">Từ chối</button>
-                            <button style="background-color: pink;color: white; margin-top: 20px;" class="delete-button"><a href="DeleteRental?rentalId=${o.rentalId}" onclick="return confirmDelete();">Xóa</a></button>
                         </c:if>
                         <c:if test="${o.rentalStatus eq 'Chưa thanh toán'}">
                             <button class="edit-button" onclick="checkRental(${o.rentalId})" data-rental-id="${o.rentalId}">Thanh toán</button>
-                        </c:if>                       
+                        </c:if>
+                        <c:if test="${o.rentalStatus != 'Đã thanh toán'}">
+                            <button style="background-color: pink;color: white; margin-top: 20px;" class="delete-button"><a href="DeleteRental?rentalId=${o.rentalId}" onclick="return confirmDelete();">Xóa</a></button>
+                        </c:if>
                     </td>
                 </tr>
             </c:forEach>

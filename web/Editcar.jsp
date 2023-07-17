@@ -67,12 +67,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Registration Number</label>
-                                    <input value="${car.registrationNumber}" name="registrationNumber" type="text" class="form-control" readonly required>
+                                    <input value="${car.registrationNumber}" name="registrationNumber" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Ảnh xe</label><br>
-                                    <img src="images/cars/${car.image}" alt="alt"/>
+                                    <img src="images/cars/${car.image}" alt="alt" onclick="toggleNewPictureInput();"/>
                                     <input value="${car.image}" name="image" type="text" class="form-control" required readonly>
+                                    <input name="newPicture" id="newPictureInput" type="file" accept="image/*" class="form-control" disabled style="display: none;">
+                                    <input name="updatePicture" id="updatePictureInput" type="hidden">
                                 </div>
                                 <div class="form-group">
                                     <label>Giá/1 ngày</label>
@@ -80,7 +82,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Trạng thái</label>
-                                    <textarea name="status" class="form-control" required>${car.status}</textarea>
+                                    <select name="status" class="form-select" aria-label="Default select example">
+                                        <option value="Available">Available</option>
+                                        <option value="Unavailable">Unavailable</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Giới thiệu</label>
@@ -95,10 +100,21 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
-
         <script src="js/manager.js" type="text/javascript"></script>
+        <script>
+            function toggleNewPictureInput() {
+                var newPictureInput = document.getElementById("newPictureInput");
+                if (newPictureInput.style.display === "none") {
+                    newPictureInput.disabled = false;
+                    newPictureInput.style.display = "block";
+                    updatePictureInput.value = "yes";
+                } else {
+                    updatePictureInput.value = null;
+                    newPictureInput.disabled = true;
+                    newPictureInput.style.display = "none";
+                }
+            }
+        </script>
     </body>
 </html>

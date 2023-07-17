@@ -32,10 +32,13 @@ public class AddCar extends HttpServlet {
         int price = Integer.parseInt(request.getParameter("price"));
         String status = "Available";
         
-        Part filePart = request.getPart("image");
-        String saveDirectory =  "C:\\Users\\Kuro\\Downloads\\Project_Final_v2\\web\\images\\cars";
-        File file = new File(saveDirectory, image);
-        filePart.write(file.getAbsolutePath());
+        String updatePictureValue = request.getParameter("updatePicture");
+        if ("yes".equals(updatePictureValue)){
+            Part filePart = request.getPart("newPicture");
+            String saveDirectory =  "C:\\Users\\Kuro\\Downloads\\Project_Final_v2\\web\\images\\cars";
+            File file = new File(saveDirectory, image);
+            filePart.write(file.getAbsolutePath());
+        }
         
         Car car = new Car(name, categoryId, carinfoId, detail, regisnum, locationId, image, price, status);
         dao.addCar(car);

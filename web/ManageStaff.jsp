@@ -96,7 +96,6 @@
         <h2>Quản lý nhân viên</h2>
         <div style="text-align: right; margin-top: -40px; margin-bottom: 10px; margin-right: 15px;">
             <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Thêm nhân viên</span></a>
-
         </div>
         <table class="table table-striped table-hover">
             <tr>
@@ -151,7 +150,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Mật khẩu</label>
-                                <input name="password" type="password" class="form-control" required>
+                                <input name="password" type="password" class="form-control"  required>
                             </div>
                         </div>
                         <div class="modal-footer">

@@ -16,8 +16,8 @@
         <link href="css/manager.css" rel="stylesheet" type="text/css"/>
         <style>
             img{
-                width: 200px;
-                height: 120px;
+                width: 500px;
+                height: 320px;
             }
         </style>
     </head>
@@ -55,7 +55,7 @@
                                     <label>GPLX</label>
                                     <input value="${cus.driverLicenseNumber}" name="driverLicenseNumber" type="text" class="form-control" required>
                                     <br>
-                                    <img src="images/driver_licenses/${cus.driverLicensePicture}" alt="Img" height="540" width="640" onclick="toggleNewPictureInput();">
+                                    <img src="images/driver_licenses/${cus.driverLicensePicture}" alt="Img" onclick="toggleNewPictureInput();">
                                     <input name="newPicture" id="newPictureInput" type="file" accept="image/*" class="form-control" disabled style="display: none;">
                                     <input name="updatePicture" id="updatePictureInput" type="hidden">
                                 </div>

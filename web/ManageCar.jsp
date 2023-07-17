@@ -145,7 +145,6 @@
                 </div>
             </div>
         </div>
-
         <table class="table table-striped table-hover">
             <tr>
                 <th>ID</th>
@@ -186,7 +185,6 @@
                 </tr>
             </c:forEach>
         </table>
-        <!-- Edit Modal HTML -->
         <div id="addEmployeeModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
