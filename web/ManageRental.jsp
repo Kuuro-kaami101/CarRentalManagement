@@ -123,7 +123,7 @@
                     <td>
                         <c:if test="${o.rentalStatus eq 'Chưa xác nhận'}">
                             <button class="edit-button" onclick="checkRental(${o.rentalId})" data-rental-id="${o.rentalId}">Xác nhận</button>
-                            <button class="edit-button" onclick="denyRental(${o.rentalId})" data-rental-id="${o.rentalId}">Từ chối</button>
+<%--                            <button class="edit-button" onclick="denyRental(${o.rentalId})" data-rental-id="${o.rentalId}">Từ chối</button>--%>
                         </c:if>
                         <c:if test="${o.rentalStatus eq 'Chưa thanh toán'}">
                             <button class="edit-button" onclick="checkRental(${o.rentalId})" data-rental-id="${o.rentalId}">Thanh toán</button>
