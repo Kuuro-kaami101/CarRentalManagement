@@ -94,6 +94,7 @@
                 <th>Tên xe</th>
                 <th>Ảnh xe</th>
                 <th>Chi phí</th>
+                <th>Trạng thái</th>
                 <th>Thao tác</th>
             </tr>
             <c:forEach items="${listRental}" var="o">
@@ -122,8 +123,8 @@
                     <td>
                         <c:if test="${o.rentalStatus eq 'Chưa xác nhận'}">
                             <button class="edit-button" onclick="checkRental(${o.rentalId})" data-rental-id="${o.rentalId}">Xác nhận</button>
-                            <button class="edit-button" onclick="checkRental(${o.rentalId})" data-rental-id="${o.rentalId}">Từ chối</button>
-                            <button style="background-color: pink;color: white; margin-top: 20px;" class="delete-button"><a href="DeleteRental?rentalId=${o.rentalId}">Xóa</a></button>
+                            <button class="edit-button" onclick="denyRental(${o.rentalId})" data-rental-id="${o.rentalId}">Từ chối</button>
+                            <button style="background-color: pink;color: white; margin-top: 20px;" class="delete-button"><a href="DeleteRental?rentalId=${o.rentalId}" onclick="return confirmDelete();">Xóa</a></button>
                         </c:if>
                         <c:if test="${o.rentalStatus eq 'Chưa thanh toán'}">
                             <button class="edit-button" onclick="checkRental(${o.rentalId})" data-rental-id="${o.rentalId}">Thanh toán</button>
@@ -135,30 +136,51 @@
         <div style="text-align: center; margin-bottom: 20px;">
             <a href="home" class="btn btn-primary btn-lg">Home</a>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script>
-                                $(document).ready(function () {
-                                    // Button click event handler
-                                    $('.edit-button').click(function () {
-                                        var rentalId = $(this).data('rental-id');
-                                        checkRental(rentalId);
-                                    });
-                                });
-
-                                function checkRental(rentalId) {
-                                    $.ajax({
-                                        type: 'POST',
-                                        url: 'UpdateRentalStatus', // Servlet URL
-                                        data: {rentalId: rentalId},
-                                        success: function (response) {
-                                            location.reload();
-                                        },
-                                        error: function (xhr, status, error) {
-                                            console.log(error);
-                                        }
-                                    });
-                                }
-        </script>
     </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Button click event handler
+            $('.edit-button').click(function () {
+                var rentalId = $(this).data('rental-id');
+                checkRental(rentalId);
+            });
+        });
+    </script>
+    <script>
+        function checkRental(rentalId) {
+            $.ajax({
+                type: 'POST',
+                url: 'UpdateRentalStatus', // Servlet URL
+                data: {rentalId: rentalId},
+                success: function (response) {
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        }
+    </script>
+    <script>
+        function confirmDelete() {
+            return confirm("Bạn có muốn xoá đơn thuê này không?");
+        }
+    </script>
+    <script>
+        function denyRental(rentalId) {
+            $.ajax({
+                type: 'POST',
+                url: 'DenyRental', // Servlet URL
+                data: {rentalId: rentalId},
+                success: function (response) {
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        }
+    </script>
 </html>

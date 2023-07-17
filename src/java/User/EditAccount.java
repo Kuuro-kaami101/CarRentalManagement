@@ -32,10 +32,13 @@ public class EditAccount extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         
-        Part filePart = request.getPart("newPicture");
-        String saveDirectory =  "C:\\Users\\Kuro\\Downloads\\Project_Final_v2\\web\\images\\driver_licenses";
-        File file = new File(saveDirectory, driverLicensePicture);
-        filePart.write(file.getAbsolutePath());
+        String updatePictureValue = request.getParameter("updatePicture");
+        if ("yes".equals(updatePictureValue)){
+            Part filePart = request.getPart("newPicture");
+            String saveDirectory =  "C:\\Users\\Kuro\\Downloads\\Project_Final_v2\\web\\images\\driver_licenses";
+            File file = new File(saveDirectory, driverLicensePicture);
+            filePart.write(file.getAbsolutePath());
+        }
         
         DAO dao = new DAO();
         dao.updateInfo(customerId, fullName, email, phone, driverLicenseNumber);

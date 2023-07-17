@@ -468,9 +468,18 @@ public class DAO {
         } else if(rental.getRentalStatus().equals("Chưa xác nhận")){
             query = "UPDATE Rentals SET rental_status = N'Chưa thanh toán', personnel_id = ? WHERE rental_id = ?";
         }
-        else{
-            query = "UPDATE Rentals SET rental_status = N'Từ chối', personnel_id = ? WHERE rental_id = ?";
+        try ( Connection con = getConnect()) {
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, staffId);
+            stmt.setInt(2, rentalId);
+            stmt.executeUpdate();
+        } catch (Exception ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void denyRental(int rentalId, String staffId) {
+        String query = "UPDATE Rentals SET rental_status = N'Từ chối', personnel_id = ? WHERE rental_id = ?";;
         try ( Connection con = getConnect()) {
             PreparedStatement stmt = con.prepareStatement(query);
             stmt.setString(1, staffId);

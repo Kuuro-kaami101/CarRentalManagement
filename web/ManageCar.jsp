@@ -126,6 +126,11 @@
                 })
             </script>
         </c:if> 
+        <script>
+            function confirmDelete() {
+                return confirm("Bạn có muốn xoá xe này không?");
+            }
+        </script>
     </head>
     <body>
         <div class="table-title ">
@@ -176,7 +181,7 @@
                     <td>
                         <a href="loadCar?carId=${car.carId}" class="edit-button" >Sửa</a>
                         <br><br>
-                        <a href="deleteCar?carId=${car.carId}" class="delete-button" >Xóa</a>
+                        <a href="deleteCar?carId=${car.carId}" class="delete-button" onclick="return confirmDelete();">Xóa</a>
                     </td>
                 </tr>
             </c:forEach>

@@ -91,7 +91,7 @@
                 }
             }
             function confirmCancel() {
-                return confirm("Bạn có muốn huỷ đơn thuê này không?");
+                return confirm("Bạn có muốn xoá khách hàng này không?");
             }
         </script>
     </head>

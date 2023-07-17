@@ -57,6 +57,7 @@
                                     <br>
                                     <img src="images/driver_licenses/${cus.driverLicensePicture}" alt="Img" height="540" width="640" onclick="toggleNewPictureInput();">
                                     <input name="newPicture" id="newPictureInput" type="file" accept="image/*" class="form-control" disabled style="display: none;">
+                                    <input name="updatePicture" id="updatePictureInput" type="hidden">
                                 </div>
                                 <div class="form-group">
                                     <label>Tài khoản</label>
@@ -86,7 +87,9 @@
                 if (newPictureInput.style.display === "none") {
                     newPictureInput.disabled = false;
                     newPictureInput.style.display = "block";
+                    updatePictureInput.value = "yes";
                 } else {
+                    updatePictureInput.value = null;
                     newPictureInput.disabled = true;
                     newPictureInput.style.display = "none";
                 }

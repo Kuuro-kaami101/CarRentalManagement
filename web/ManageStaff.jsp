@@ -118,7 +118,7 @@
                     <td>${o.password}</td>
                     <td class="button-container">
                         <button style="background-color: pink;color: white; margin-top: 20px;" class="edit-button"><a href="editStaff?staff_id=${o.personnelId}">Chỉnh sửa</a></button>
-                        <button style="background-color: pink;color: white; margin-top: 20px;" class="delete-button"><a href="deleteStaff?staff_id=${o.personnelId}">Xóa</a></button>
+                        <button style="background-color: pink;color: white; margin-top: 20px;" class="delete-button"><a href="deleteStaff?staff_id=${o.personnelId}" onclick="return confirmCancel()">Xóa</a></button>
                     </td>
                 </tr>
             </c:forEach>
@@ -165,5 +165,10 @@
         
         <a href="home" class="btn btn-success" style = "background-color: white; color: black;">Trang chủ</a>
     <script src="js/manager.js" type="text/javascript"></script>
+    <script>
+        function confirmCancel() {
+                return confirm("Bạn có muốn xoá nhân viên này không?");
+            }
+    </script>
     </body>
 </html>

@@ -153,8 +153,11 @@ VALUES
 	(13, N'MITSUBISHI XPANDER 2019', 5,4, N'Xpander 2019, màu bạc, 7 chỗ, xe mới. Xe gia đình nên được giữ gìn cẩn thận, bảo dưỡng định kỳ.', 'KLM789', 3, 'car13.jpg', 170, 'Available'),
 	(14, N'MITSUBISHI XPANDER 2020', 5,1, N'Xe gia đình hiệu Xpander màu đỏ, số tự động. 7 chỗ đa dụng, rộng rãi. Động cơ 1.5đủ dùng đi trong phố hoặc tham quan các điểm du lịch. Xe sản xuất và nhập tháng 10/2019. Được trang bị màn hình DVD, camera lùi, la răng đúc.', 'NOP012', 4, 'car14.jpg', 190, 'Available'),
 	(15, N'FORD ECOSPORT 2021', 5,2, N'Ford EcoSport 2021, số tự động, màu xanh ngọc. Xe mới đẹp, đồng hồ đọc Km 4,000km. Điều hòa mát, ghế nỉ, màn hình camera lùi, gương chỉnh điện, đèn pha cảm biến anh sáng. Gương gập chỉnh điện, mâm đúc 17. Cảm biến trước sau', 'QRS345', 5, 'car15.jpg', 160, 'Available');
-  
-select * from Rentals
+ 
+ 
+use Final
+delete from Customers
+select * from Personnel
 
 SELECT * FROM Rentals where rental_id =4
 UPDATE Rentals SET rental_status = N'Chưa xác nhận', personnel_id = null WHERE rental_id = 4
@@ -165,4 +168,6 @@ SELECT COALESCE(MAX(car_id), 1) as id FROM Cars
 
 SELECT COUNT(*) AS RecordCount FROM Cars
 
-select * from Cars
+select * from Rentals
+
+UPDATE Rentals SET rental_status = N'Từ chối', personnel_id = 'ST001' WHERE rental_id = 23
