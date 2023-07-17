@@ -106,7 +106,7 @@ public class DAO {
     public int generateCarId() {
         String query = "SELECT IDENT_CURRENT('Cars')";
         int latestId = 0;
-        try (Connection connection = getConnect();  Statement statement = connection.createStatement();  ResultSet resultSet = statement.executeQuery(query)) {
+        try ( Connection connection = getConnect();  Statement statement = connection.createStatement();  ResultSet resultSet = statement.executeQuery(query)) {
             if (resultSet.next()) {
                 latestId = resultSet.getInt(1);
             }
@@ -217,7 +217,7 @@ public class DAO {
         }
         return availableCars;
     }
-    
+
     public List<Car> findCommonCar(List<Car> listCar1, List<Car> listCar2) {
         Set<Integer> set = new HashSet<>();
 
@@ -235,7 +235,7 @@ public class DAO {
 
         return listCommonCar;
     }
-    
+
 //=======================================================================================================================================
     public List<Role> getAllRoles() {
         List<Role> roles = new ArrayList<>();
@@ -465,7 +465,7 @@ public class DAO {
         String query = null;
         if (rental.getRentalStatus().equals("Chưa thanh toán")) {
             query = "UPDATE Rentals SET rental_status = N'Đã thanh toán', personnel_id = ? WHERE rental_id = ?";
-        } else if(rental.getRentalStatus().equals("Chưa xác nhận")){
+        } else if (rental.getRentalStatus().equals("Chưa xác nhận")) {
             query = "UPDATE Rentals SET rental_status = N'Chưa thanh toán', personnel_id = ? WHERE rental_id = ?";
         }
         try ( Connection con = getConnect()) {
@@ -477,7 +477,7 @@ public class DAO {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void denyRental(int rentalId, String staffId) {
         String query = "UPDATE Rentals SET rental_status = N'Từ chối', personnel_id = ? WHERE rental_id = ?";;
         try ( Connection con = getConnect()) {
@@ -489,8 +489,8 @@ public class DAO {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void payRental(int rentalId){
+
+    public void payRental(int rentalId) {
         String query = "UPDATE Rentals SET rental_status = N'Đã thanh toán' WHERE rental_id = ?";
         try ( Connection con = getConnect()) {
             PreparedStatement stmt = con.prepareStatement(query);
@@ -596,33 +596,52 @@ public class DAO {
         return customers;
     }
 
+    public boolean changePassword(String cusId, String newPassword) {
+        String query = "UPDATE Customers SET password = ? WHERE customer_id = ?";
+        try ( Connection connection = getConnect();  PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, newPassword);
+            statement.setString(2, cusId);
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Password changed successfully.");
+                return true;
+            } else {
+                System.out.println("Failed to change the password. Incorrect current password or customer not found.");
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error changing the password: " + e.getMessage());
+            return false;
+        }
+    }
+
     public boolean checkDuplicateUsername(String username, List<Customer> userList) {
         for (Customer user : userList) {
             if (user.getUsername().equals(username)) {
-                return true; 
+                return true;
             }
         }
         return false;
     }
-    
+
     public boolean checkDuplicateEmail(String email, List<Customer> userList) {
         for (Customer user : userList) {
             if (user.getEmail().equals(email)) {
-                return true; 
+                return true;
             }
         }
         return false;
     }
-    
+
     public boolean checkDuplicatePhone(String phone, List<Customer> userList) {
         for (Customer user : userList) {
             if (user.getPhone().equals(phone)) {
-                return true; 
+                return true;
             }
         }
         return false;
     }
-    
+
     public void addCustomer(Customer customer) {
         try ( Connection connection = DriverManager.getConnection(DBURL, USERDB, PASSDB)) {
             String query = "INSERT INTO Customers (customer_id, full_name, email, phone, driver_license_number, driver_license_picture, username, password, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";

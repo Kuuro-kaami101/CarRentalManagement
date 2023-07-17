@@ -30,6 +30,7 @@
                             <h2>Tài khoản của bạn<b></b></h2>
                         </div>
                         <a href="home" class="btn btn-success" style = "background-color: white; color: black">Trang chủ</a>	
+                        <button class="btn btn-primary" style="background-color: white; color: black" data-toggle="modal" data-target="#changePasswordModal">Đổi mật khẩu</button>
                     </div>
                 </div>
             </div>
@@ -38,6 +39,7 @@
                     <div class="modal-content">
                         <form action="editAccount" method="post" onsubmit="return confirmChange();" enctype="multipart/form-data">
                             <div class="modal-body">	
+                                <p class="text-danger" style="color: red;">${mess}</p>
                                 <input value="${cus.customerId}" name="customerId" type="text" hidden>
                                 <div class="form-group">
                                     <label>Họ tên</label>
@@ -75,25 +77,56 @@
                     </div>
                 </div>
             </div>
+
+            <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form action="changePassword" method="post" onsubmit="return confirmChangePassword();">
+                            <input value="${cus.customerId}" name="customerId" type="text" hidden>
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="changePasswordModalLabel">Đổi mật khẩu</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Mật khẩu hiện tại</label>
+                                    <input name="currentPassword" type="password" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Mật khẩu mới</label>
+                                    <input name="newPassword" type="password" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Nhập lại mật khẩu mới</label>
+                                    <input name="confirmNewPassword" type="password" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                <input type="submit" class="btn btn-primary" value="Lưu">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
         <script src="js/manager.js" type="text/javascript"></script>
         <script>
-            function confirmChange() {
-                return confirm("Bạn có muốn thay đổi thông tin không?");
-            }
+                        function confirmChange() {
+                            return confirm("Bạn có muốn thay đổi thông tin không?");
+                        }
 
-            function toggleNewPictureInput() {
-                var newPictureInput = document.getElementById("newPictureInput");
-                if (newPictureInput.style.display === "none") {
-                    newPictureInput.disabled = false;
-                    newPictureInput.style.display = "block";
-                    updatePictureInput.value = "yes";
-                } else {
-                    updatePictureInput.value = null;
-                    newPictureInput.disabled = true;
-                    newPictureInput.style.display = "none";
-                }
-            }
+                        function toggleNewPictureInput() {
+                            var newPictureInput = document.getElementById("newPictureInput");
+                            if (newPictureInput.style.display === "none") {
+                                newPictureInput.disabled = false;
+                                newPictureInput.style.display = "block";
+                                updatePictureInput.value = "yes";
+                            } else {
+                                updatePictureInput.value = null;
+                                newPictureInput.disabled = true;
+                                newPictureInput.style.display = "none";
+                            }
+                        }
         </script>
     </body>
 </html>
